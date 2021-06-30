@@ -68,38 +68,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        child: Text("PRODUCT"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("REVIEWS"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("GALLERY"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
+                    buildProductButton("PRODUCT"),
+                    buildProductButton("REVIEWS"),
+                    buildProductButton("GALLERY"),
                   ],
                 ),
               ),
@@ -116,19 +87,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.phone,
-                          color: Colors.orange,
-                        ),
-                        style: ButtonStyle(
-                          side: MaterialStateProperty.all<BorderSide>(
-                              BorderSide(color: const Color(c))),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                        ),
-                      ),
+                      child: buildOutlinedButton(),
                     ),
                     Expanded(
                       child: OutlinedButton(
@@ -165,6 +124,35 @@ class _OrderScreenState extends State<OrderScreen> {
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  OutlinedButton buildOutlinedButton() {
+    return OutlinedButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.phone,
+        color: Colors.orange,
+      ),
+      style: ButtonStyle(
+        side: MaterialStateProperty.all<BorderSide>(
+            BorderSide(color: const Color(c))),
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+      ),
+    );
+  }
+
+  Expanded buildProductButton(String label) {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {});
+        },
+        child: Text(label),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
         ),
       ),
     );

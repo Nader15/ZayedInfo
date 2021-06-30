@@ -10,10 +10,14 @@ class _RestaurantState extends State<Restaurant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar('Restaurants'),
-      body: Container(
-        color: Colors.blueGrey,
-      ),
-    );
+        appBar: BuildScreensAppBar('Restaurants'),
+        body: ListView(
+          children: [
+            buildInkWell(context, 'images/restaurant.jpg', "Gril"),
+            buildInkWell(context, 'images/restaurant.jpg', "Fish Markets"),
+            buildInkWell(context, 'images/restaurant.jpg', "Pizaa"),
+            buildInkWell(context, 'images/restaurant.jpg', "Sushi"),
+          ],
+        ));
   }
 }

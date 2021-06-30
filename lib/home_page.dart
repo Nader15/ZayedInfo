@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10),
               itemBuilder: (BuildContext context, int index) {
-                return buildInkWell(placesImg[index], placenameli[index]);
+                return buildInkWellHome(placesImg[index], placenameli[index]);
               },
             ),
           ),
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     Icons.arrow_forward,
                   ),
                 ),
-                buildInkWell("images/fourth.jpg", "test")
+//                buildInkWell("images/fourth.jpg", "test")
               ],
             ),
           ),

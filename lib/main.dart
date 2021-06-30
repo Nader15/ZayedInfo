@@ -1,5 +1,7 @@
 import 'package:elsheikhzayedinfo/home.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
+import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
+import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         '/restaurant': (context) => Restaurant()
       },
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: OrderScreen(),
     );
   }
 }

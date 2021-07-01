@@ -88,7 +88,11 @@ class _OrderScreenState extends State<OrderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
+<<<<<<< HEAD
                       child: buildOutlinedButton(Icons.mail),
+=======
+                      child: buildOutlinedButton(),
+>>>>>>> 0851b4c7091cfa70689916590f01d8053ca19a50
                     ),
                     Expanded(
                       child: buildOutlinedButton(Icons.phone),
@@ -147,11 +151,19 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
+<<<<<<< HEAD
   OutlinedButton buildOutlinedButton(IconData ic) {
     return OutlinedButton(
       onPressed: () {},
       child: Icon(
         ic,
+=======
+  OutlinedButton buildOutlinedButton() {
+    return OutlinedButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.phone,
+>>>>>>> 0851b4c7091cfa70689916590f01d8053ca19a50
         color: Colors.orange,
       ),
       style: ButtonStyle(

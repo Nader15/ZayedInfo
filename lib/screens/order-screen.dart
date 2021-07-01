@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/service/google_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -68,38 +69,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        child: Text("PRODUCT"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("REVIEWS"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("GALLERY"),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                      ),
-                    ),
+                    buildProductButton("PRODUCT"),
+                    buildProductButton("REVIEWS"),
+                    buildProductButton("GALLERY"),
                   ],
                 ),
               ),
@@ -116,55 +88,89 @@ class _OrderScreenState extends State<OrderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.phone,
-                          color: Colors.orange,
-                        ),
-                        style: ButtonStyle(
-                          side: MaterialStateProperty.all<BorderSide>(
-                              BorderSide(color: const Color(c))),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                        ),
-                      ),
+                      child: buildOutlinedButton(Icons.mail),
                     ),
                     Expanded(
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.mail,
-                          color: Colors.orange,
-                        ),
-                        style: ButtonStyle(
-                          side: MaterialStateProperty.all<BorderSide>(
-                              BorderSide(color: const Color(c))),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                        ),
-                      ),
+                      child: buildOutlinedButton(Icons.phone),
                     ),
                     Expanded(
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.directions,
-                          color: Colors.orange,
-                        ),
-                        style: ButtonStyle(
-                          side: MaterialStateProperty.all<BorderSide>(
-                              BorderSide(color: const Color(c))),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                        ),
+                      child: buildOutlinedButton(Icons.directions),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(8),
+                child: DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Lucca Steakhouse Egypt \n "),
+                      Text("2.45 \n "),
+                      Text(
+                          "انضم الينا و استمتع ب # شرائح اللحم كما لم يحدث من قبل فى مصر! \n"),
+                      Text(
+                          "join us and enjoy our dry-aged #steaks like never before in Egypt \n "),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(Icons.add_location),
+                    Text(
+                      "Al Guezira Plaza 6 October City,\n Giza Governorate,Egypt",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
+              Container(
+                  padding: EdgeInsets.all(8),
+                  height: MediaQuery.of(context).size.height / 4,
+                  child: MapScreen())
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  OutlinedButton buildOutlinedButton(IconData ic) {
+    return OutlinedButton(
+      onPressed: () {},
+      child: Icon(
+        ic,
+        color: Colors.orange,
+      ),
+      style: ButtonStyle(
+        side: MaterialStateProperty.all<BorderSide>(
+            BorderSide(color: const Color(c))),
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+      ),
+    );
+  }
+
+  Expanded buildProductButton(String label) {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {});
+        },
+        child: Text(label),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
         ),
       ),
     );

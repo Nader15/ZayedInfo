@@ -3,6 +3,7 @@ import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
+import 'package:elsheikhzayedinfo/service/google_map.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         '/restaurant': (context) => Restaurant()
       },
       debugShowCheckedModeBanner: false,
-      home: OrderScreen(),
+//      home: OrderScreen(),
+      home: MapScreen(),
     );
   }
 }

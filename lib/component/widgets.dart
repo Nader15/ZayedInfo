@@ -1,3 +1,5 @@
+import 'package:elsheikhzayedinfo/screens/business_locator_screen.dart';
+import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -63,7 +65,8 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
             title: Text("Geo Stores"), // done
             onTap: () {
-              Navigator.of(context).pushNamed('/manage your business');
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => BusinessLocator()));
             },
             leading: Icon(Icons.local_activity),
           ),
@@ -98,7 +101,10 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             title: Text("Settings"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SettingScreen()));
+            },
             leading: Icon(Icons.settings),
           ),
           ListTile(

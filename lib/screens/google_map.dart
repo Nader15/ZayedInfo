@@ -24,25 +24,6 @@ class _MapScreenState extends State<MapScreen> {
           zoomControlsEnabled: false,
           onMapCreated: (controller) => _googleMapController = controller,
         ),
-//        Container(
-//          padding: EdgeInsets.all(8),
-//          child: Column(
-//            children: [
-//              IconButton(
-//                onPressed: () => _googleMapController.animateCamera(
-//                  CameraUpdate.newCameraPosition(
-//                    CameraPosition(target: LatLng(30.056021, 30.976639)),
-//                  ),
-//                ),
-//                icon: Icon(Icons.add),
-//              ),
-//              IconButton(
-//                onPressed: () {},
-//                icon: Icon(Icons.minimize),
-//              )
-//            ],
-//          ),
-//        )
       ],
     ));
   }

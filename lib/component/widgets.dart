@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+// Drawer
 class MyDrawer extends StatefulWidget {
   @override
   _MyDrawerState createState() => _MyDrawerState();
@@ -55,44 +56,135 @@ class _MyDrawerState extends State<MyDrawer> {
                 )),
           ),
           ListTile(
+            title: Text("Home"),
             onTap: () {},
             leading: Icon(Icons.home),
-            title: Text("Home"),
           ),
           ListTile(
-            onTap: () {},
-            leading: Icon(Icons.list),
-            title: Text("Categories"),
+            title: Text("Geo Stores"), // done
+            onTap: () {
+              Navigator.of(context).pushNamed('/manage your business');
+            },
+            leading: Icon(Icons.local_activity),
           ),
           ListTile(
+            title: Text("Orders"),
             onTap: () {},
-            leading: Icon(Icons.business_center),
+            leading: Icon(Icons.shopping_cart),
+          ),
+          ListTile(
+            title: Text("Edit Profile"), // done
+            onTap: () {
+              Navigator.of(context).pushNamed('/edit profile');
+            },
+            leading: Icon(Icons.person),
+          ),
+          ListTile(
             title: Text("Manage Your Business"),
+            onTap: () {
+              Navigator.of(context).pushNamed('/manage your business');
+            },
+            leading: Icon(Icons.business_center),
           ),
           ListTile(
+            title: Text("Inbox"),
             onTap: () {},
-            leading: Icon(Icons.favorite),
-            title: Text("Favorites"),
+            leading: Icon(Icons.inbox),
           ),
           ListTile(
+            title: Text("LogOut"),
+            onTap: () {},
+            leading: Icon(Icons.logout),
+          ),
+          ListTile(
+            title: Text("Settings"),
             onTap: () {},
             leading: Icon(Icons.settings),
-            title: Text("Settings"),
           ),
           ListTile(
+            title: Text("About Us"),
             onTap: () {},
             leading: Icon(Icons.info_outline),
-            title: Text("About Us"),
           ),
           ListTile(
+            title: Text("Language"),
             onTap: () {},
             leading: Icon(Icons.language),
-            title: Text("Language"),
           ),
         ],
       ),
     );
   }
+}
+
+// Home AppBar with three icons
+
+AppBar buildHomeAppBar() {
+  return AppBar(
+    leading: Builder(
+      builder: (context) => IconButton(
+        icon: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+      ),
+    ),
+    backgroundColor: Colors.white,
+    title: Text(
+      "El Sheikh Zayed info ",
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    actions: [
+      IconButton(
+        onPressed: () {},
+        icon: Icon(
+          Icons.shopping_cart,
+          color: Colors.black,
+        ),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: Icon(
+          Icons.notifications_none,
+          color: Colors.black,
+        ),
+      )
+    ],
+  );
+}
+
+// Screens AppBar
+
+AppBar BuildScreensAppBar(@required String pageTitle) {
+  return AppBar(
+    leading: Builder(
+      builder: (context) => IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+    ),
+    backgroundColor: Colors.white,
+    title: Text(
+      pageTitle,
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
 }
 
 class MySlider extends StatefulWidget {
@@ -133,6 +225,7 @@ class _MySliderState extends State<MySlider> {
   }
 }
 
+// Home widgets
 InkWell buildInkWellHome(
     @required String imagename, @required String placename) {
   return InkWell(
@@ -154,65 +247,7 @@ InkWell buildInkWellHome(
   );
 }
 
-AppBar buildHomeAppBar() {
-  return AppBar(
-    leading: Builder(
-      builder: (context) => IconButton(
-        icon: Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
-        },
-      ),
-    ),
-    backgroundColor: Colors.white,
-    title: Text(
-      "El Sheikh Zayed info ",
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.shopping_cart,
-          color: Colors.black,
-        ),
-      )
-    ],
-  );
-}
-
-AppBar BuildScreensAppBar(@required String pageTitle) {
-  return AppBar(
-    leading: Builder(
-      builder: (context) => IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-    ),
-    backgroundColor: Colors.white,
-    title: Text(
-      pageTitle,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  );
-}
-
+// Screen Widgets
 InkWell buildInkWell(BuildContext context, @required String imagename,
     @required String placename) {
   return InkWell(

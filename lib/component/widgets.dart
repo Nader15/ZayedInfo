@@ -1,4 +1,8 @@
 import 'package:elsheikhzayedinfo/screens/business_locator_screen.dart';
+import 'package:elsheikhzayedinfo/screens/business_management_screen.dart';
+import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
+import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
+import 'package:elsheikhzayedinfo/screens/info_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,6 +14,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  int _radioGroupValue = 0;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -59,7 +64,9 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             title: Text("Home"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+            },
             leading: Icon(Icons.home),
           ),
           ListTile(
@@ -78,20 +85,25 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
             title: Text("Edit Profile"), // done
             onTap: () {
-              Navigator.of(context).pushNamed('/edit profile');
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => EditProfile()));
             },
             leading: Icon(Icons.person),
           ),
           ListTile(
             title: Text("Manage Your Business"),
             onTap: () {
-              Navigator.of(context).pushNamed('/manage your business');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BusinessManagement()));
             },
             leading: Icon(Icons.business_center),
           ),
           ListTile(
             title: Text("Inbox"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Inbox()));
+            },
             leading: Icon(Icons.inbox),
           ),
           ListTile(
@@ -109,12 +121,44 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             title: Text("About Us"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => InfoScreen()));
+            },
             leading: Icon(Icons.info_outline),
           ),
           ListTile(
             title: Text("Language"),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  content: Container(
+                    height: 150,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text("English"),
+                          leading: Radio(
+                            value: null,
+                            groupValue: _radioGroupValue,
+                            onChanged: null,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text("العربيه"),
+                          leading: Radio(
+                            value: null,
+                            groupValue: _radioGroupValue,
+                            onChanged: null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
             leading: Icon(Icons.language),
           ),
         ],
@@ -255,10 +299,12 @@ InkWell buildInkWellHome(
 
 // Screen Widgets
 InkWell buildInkWell(BuildContext context, @required String imagename,
-    @required String placename) {
+    @required Widget widgetName, String placename) {
   return InkWell(
     onTap: () {
-      Navigator.pushNamed(context, '/restaurant');
+      //Navigator.pushNamed(context, '/restaurant');
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => widgetName));
     },
     child: Stack(
       alignment: AlignmentDirectional.center,

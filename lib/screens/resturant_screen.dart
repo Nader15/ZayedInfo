@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
 import 'package:flutter/material.dart';
 
 class Restaurant extends StatefulWidget {
@@ -10,14 +11,16 @@ class _RestaurantState extends State<Restaurant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BuildScreensAppBar('Restaurants'),
-        body: ListView(
-          children: [
-            buildInkWell(context, 'images/restaurant.jpg', "Gril"),
-            buildInkWell(context, 'images/restaurant.jpg', "Fish Markets"),
-            buildInkWell(context, 'images/restaurant.jpg', "Pizaa"),
-            buildInkWell(context, 'images/restaurant.jpg', "Sushi"),
-          ],
-        ));
+      appBar: BuildScreensAppBar('Restaurants'),
+      body: ListView(
+        children: [
+          buildInkWell(context, 'images/restaurant.jpg', Gril(), "Gril"),
+          buildInkWell(
+              context, 'images/restaurant.jpg', Gril(), "Fish Markets"),
+          buildInkWell(context, 'images/restaurant.jpg', Gril(), "Pizza"),
+          buildInkWell(context, 'images/restaurant.jpg', Gril(), "Sushi"),
+        ],
+      ),
+    );
   }
 }

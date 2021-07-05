@@ -1,5 +1,6 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
+import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,8 @@ class _OrderScreenState extends State<OrderScreen> {
                   ],
                 ),
               ),
-              buildInkWell(context, 'images/restaurant.jpg', 'Resturant'),
+              buildInkWell(
+                  context, 'images/restaurant.jpg', Restaurant(), "Restaurant"),
               Container(
                 padding: EdgeInsets.all(5),
                 child: Row(

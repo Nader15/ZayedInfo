@@ -5,8 +5,11 @@ import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
+import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
+import 'package:elsheikhzayedinfo/screens/info_screen.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
+import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -25,14 +28,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/cateories': (context) => Categories(),
         '/restaurant': (context) => Restaurant(),
-        '/guo store': (context) => BusinessLocator(),
-        '/edit profile': (context) => EditProfile(),
-        '/manage your business': (context) => BusinessManagement(),
       },
       debugShowCheckedModeBanner: false,
-//      home: OrderScreen(),
-//       home: SettingScreen(),
-      home: Home(),
+      home: SearchScreen(),
     );
   }
 }

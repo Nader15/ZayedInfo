@@ -25,122 +25,122 @@ class _SettingScreenState extends State<SettingScreen> {
         child: ListView(
           padding: EdgeInsets.all(10),
           children: [
-            Card(
-                child: ListTile(
+            ListTile(
               title: Text(
                 "NOTIFICATIONS",
                 style: TextStyle(
                   color: Colors.red,
                 ),
               ),
-            )),
-            Card(
-              child: ListTile(
-                title: Text(
-                  "Production notification",
-                  style: _titleStyle,
-                ),
-                subtitle: Text("Receive a special products notification"),
-                trailing: Checkbox(
-                  fillColor: MaterialStateProperty.all<Color>(Colors.orange),
-                  value: this.value1,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      this.value1 = value!;
-                    });
-                  },
-                ),
+            ),
+            ListTile(
+              title: Text(
+                "Production notification",
+                style: _titleStyle,
+              ),
+              subtitle: Text("Receive a special products notification"),
+              trailing: Checkbox(
+                fillColor: MaterialStateProperty.all<Color>(Colors.orange),
+                value: this.value1,
+                onChanged: (bool? value) {
+                  setState(() {
+                    this.value1 = value!;
+                  });
+                },
               ),
             ),
-            Card(
-              child: ListTile(
-                title: Text(
-                  "Nearby stores notifications",
-                  style: _titleStyle,
-                ),
-                subtitle:
-                    Text("Receive notification when there is a store near you"),
-                trailing: Checkbox(
-                  fillColor: MaterialStateProperty.all<Color>(Colors.orange),
-                  value: this.value2,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      this.value2 = value!;
-                    });
-                  },
-                ),
+            Divider(
+              color: Colors.grey,
+            ),
+            ListTile(
+              title: Text(
+                "Nearby stores notifications",
+                style: _titleStyle,
+              ),
+              subtitle:
+                  Text("Receive notification when there is a store near you"),
+              trailing: Checkbox(
+                fillColor: MaterialStateProperty.all<Color>(Colors.orange),
+                value: this.value2,
+                onChanged: (bool? value) {
+                  setState(() {
+                    this.value2 = value!;
+                  });
+                },
               ),
             ),
-            // Card(
-            //   child: ListTile(
-            //     title: Text(
-            //       "Massenger notification",
-            //       style: _titleStyle,
-            //     ),
-            //     subtitle:
-            //         Text("Receive notification when there is new message"),
-            //     trailing: Checkbox(
-            //       fillColor: MaterialStateProperty.all<Color>(Colors.orange),
-            //       value: this.value3,
-            //       onChanged: (bool? value) {
-            //         setState(() {
-            //           this.value3 = value!;
-            //         });
-            //       },
-            //     ),
-            //   ),
-            // ),
-            Card(
-              child: ListTile(
-                title: Text(
-                  "APPLICATION",
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
+            Divider(
+              color: Colors.grey,
+            ),
+            ListTile(
+              title: Text(
+                "Massenger notification",
+                style: _titleStyle,
+              ),
+              subtitle: Text("Receive notification when there is new message"),
+              trailing: Checkbox(
+                fillColor: MaterialStateProperty.all<Color>(Colors.orange),
+                value: this.value3,
+                onChanged: (bool? value) {
+                  setState(() {
+                    this.value3 = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text(
+                "APPLICATION",
+                style: TextStyle(
+                  color: Colors.red,
                 ),
               ),
             ),
             InkWell(
               onTap: () {},
-              child: Card(
-                child: ListTile(
-                  title: Text(
-                    "Distance Unit",
-                    style: _titleStyle,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Card(
-                child: ListTile(
-                  title: Text(
-                    "Terms of use",
-                    style: _titleStyle,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Card(
-                child: ListTile(
-                  title: Text(
-                    "Privacy Policy",
-                    style: _titleStyle,
-                  ),
-                ),
-              ),
-            ),
-            Card(
               child: ListTile(
                 title: Text(
-                  "Version of application",
+                  "Distance Unit",
                   style: _titleStyle,
                 ),
-                subtitle: Text("2.1"),
               ),
+            ),
+            Divider(
+              color: Colors.grey,
+            ),
+            InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  "Terms of use",
+                  style: _titleStyle,
+                ),
+              ),
+            ),
+            Divider(
+              color: Colors.grey,
+            ),
+            InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  "Privacy Policy",
+                  style: _titleStyle,
+                ),
+              ),
+            ),
+            Divider(
+              color: Colors.grey,
+            ),
+            ListTile(
+              title: Text(
+                "Version of application",
+                style: _titleStyle,
+              ),
+              subtitle: Text("2.1"),
+            ),
+            Divider(
+              color: Colors.grey,
             ),
           ],
         ),

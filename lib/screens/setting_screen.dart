@@ -71,25 +71,25 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
             ),
-            Card(
-              child: ListTile(
-                title: Text(
-                  "Massenger notification",
-                  style: _titleStyle,
-                ),
-                subtitle:
-                    Text("Receive notification when there is new message"),
-                trailing: Checkbox(
-                  fillColor: MaterialStateProperty.all<Color>(Colors.orange),
-                  value: this.value3,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      this.value3 = value!;
-                    });
-                  },
-                ),
-              ),
-            ),
+            // Card(
+            //   child: ListTile(
+            //     title: Text(
+            //       "Massenger notification",
+            //       style: _titleStyle,
+            //     ),
+            //     subtitle:
+            //         Text("Receive notification when there is new message"),
+            //     trailing: Checkbox(
+            //       fillColor: MaterialStateProperty.all<Color>(Colors.orange),
+            //       value: this.value3,
+            //       onChanged: (bool? value) {
+            //         setState(() {
+            //           this.value3 = value!;
+            //         });
+            //       },
+            //     ),
+            //   ),
+            // ),
             Card(
               child: ListTile(
                 title: Text(

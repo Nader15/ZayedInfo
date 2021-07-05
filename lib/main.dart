@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
 //      home: OrderScreen(),
+//       home: SettingScreen(),
       home: Home(),
     );
   }

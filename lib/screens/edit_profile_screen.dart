@@ -32,71 +32,70 @@ class _EditProfileState extends State<EditProfile> {
     return Scaffold(
       appBar: BuildScreensAppBar("Edit Profile"),
       body: Center(
-        child: Container(
-          padding: EdgeInsets.all(25),
-          margin: EdgeInsets.all(25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-                maxRadius: 60,
-                child: IconButton(
-                  color: Colors.white,
-                  onPressed: () {
-                    getimage(ImageSource.gallery);
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(
-                    Icons.person_add,
-                    size: 30,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  maxRadius: 50,
+                  child: IconButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      getimage(ImageSource.gallery);
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(
+                      Icons.person_add,
+                      size: 30,
+                    ),
                   ),
                 ),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Enter your Email",
-                  hintStyle: _hintStyle,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Enter your Email",
+                    hintStyle: _hintStyle,
+                  ),
+                  validator: (val) {
+                    if (val!.isEmpty || !val.contains('@'))
+                      return "Invalid email";
+                  },
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                validator: (val) {
-                  if (val!.isEmpty || !val.contains('@'))
-                    return "Invalid email";
-                },
-                keyboardType: TextInputType.emailAddress,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Full name",
-                  hintStyle: _hintStyle,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Full name",
+                    hintStyle: _hintStyle,
+                  ),
+                  keyboardType: TextInputType.name,
                 ),
-                keyboardType: TextInputType.name,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "User name",
-                  hintStyle: _hintStyle,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "User name",
+                    hintStyle: _hintStyle,
+                  ),
+                  keyboardType: TextInputType.name,
                 ),
-                keyboardType: TextInputType.name,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Phone number",
-                  hintStyle: _hintStyle,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Phone number",
+                    hintStyle: _hintStyle,
+                  ),
+                  keyboardType: TextInputType.phone,
                 ),
-                keyboardType: TextInputType.phone,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  hintStyle: _hintStyle,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    hintStyle: _hintStyle,
+                  ),
+                  keyboardType: TextInputType.number,
+                  obscureText: true,
                 ),
-                keyboardType: TextInputType.number,
-                obscureText: true,
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                width: MediaQuery.of(context).size.width - 10,
-                child: Expanded(
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  width: MediaQuery.of(context).size.width - 10,
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {});
@@ -111,8 +110,8 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

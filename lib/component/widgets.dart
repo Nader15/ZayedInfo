@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/screens/business_management_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -63,7 +64,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
             title: Text("Geo Stores"), // done
             onTap: () {
-              Navigator.of(context).pushNamed('/manage your business');
+              Navigator.of(context).pushNamed('/guo store');
             },
             leading: Icon(Icons.local_activity),
           ),

@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
       routes: {
         '/cateories': (context) => Categories(),
         '/restaurant': (context) => Restaurant(),
-        '/manage your business': (context) => BusinessLocator(),
+        '/guo store': (context) => BusinessLocator(),
         '/edit profile': (context) => EditProfile(),
         '/manage your business': (context) => BusinessManagement(),
       },
       debugShowCheckedModeBanner: false,
 //      home: OrderScreen(),
-      home: SettingScreen(),
+      home: Home(),
     );
   }
 }

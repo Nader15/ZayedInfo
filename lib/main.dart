@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/restaurant': (context) => Restaurant(),
       },
       debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
+      home: Home(),
     );
   }
 }

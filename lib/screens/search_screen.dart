@@ -10,9 +10,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   Color c1 = Colors.grey;
   Color c2 = Colors.orange;
-  bool _hasBeenPressed = false;
+  // bool _hasBeenPressed = false;
   double _value = 0.0;
-  int currentIndex = 0;
+
+  //List<bool> isSelected = List.generate(10, (index) => false);
+
+  int tappedIndex = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    tappedIndex = -1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,34 +70,31 @@ class _SearchScreenState extends State<SearchScreen> {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: () {
-                              setState(() {
-//                                _hasBeenPressed = !_hasBeenPressed;
-                                for (int i = 0; i < isSelected.length; i++) {
-                                  if (i == index) {
-                                    isSelected[index] = true;
-                                    print(isSelected[index]);
-                                  } else
-                                    isSelected[index] = false;
-                                  print(isSelected[index]);
-                                }
-                              });
-                            },
                             child: Container(
                               margin: EdgeInsets.only(right: 5),
                               padding: EdgeInsets.all(10),
                               child: Text(
                                 "ALL CATEGORIES $index",
                                 style: TextStyle(
-                                  color: isSelected[index] ? c2 : c1,
+                                  // color: isSelected[index] ? c2 : c1,
+                                  color: tappedIndex == index ? c2 : c1,
                                   fontSize: 15,
                                 ),
                               ),
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                    color: isSelected[index] ? c2 : c1),
+                                  //color: isSelected[index] ? c2 : c1,
+                                  color: tappedIndex == index ? c2 : c1,
+                                ),
                               ),
                             ),
+                            onTap: () {
+                              setState(() {
+                                tappedIndex = index;
+                                // isSelected[index] = !isSelected[index];
+                              });
+                            },
                           );
                         }),
                   ),
@@ -144,6 +151,13 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-
-  List<bool> isSelected = [true, false, false];
 }
+
+//                                for (int i = 0; i < isSelected.length; i++) {
+//                                  if (i == index) {
+//                                    isSelected[index] = true;
+//                                    print(isSelected[index]);
+//                                  } else
+//                                    isSelected[index] = false;
+//                                  print(isSelected[index]);
+//                                }

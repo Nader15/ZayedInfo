@@ -1,5 +1,6 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
+import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class BusinessLocator extends StatefulWidget {
@@ -34,7 +35,10 @@ class _BusinessLocatorState extends State<BusinessLocator> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SearchScreen()));
+            },
             icon: Icon(
               Icons.search,
               color: Colors.black,

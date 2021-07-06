@@ -152,12 +152,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-//                                for (int i = 0; i < isSelected.length; i++) {
-//                                  if (i == index) {
-//                                    isSelected[index] = true;
-//                                    print(isSelected[index]);
-//                                  } else
-//                                    isSelected[index] = false;
-//                                  print(isSelected[index]);
-//                                }

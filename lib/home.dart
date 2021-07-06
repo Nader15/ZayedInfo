@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/home_page.dart';
+import 'package:elsheikhzayedinfo/screens/bookmark_screen.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class _HomeState extends State<Home> {
   List<Widget> pages = [
     HomePage(),
     Categories(),
+    BookMarkScreen(),
   ];
 
   int pageIndex = 0;

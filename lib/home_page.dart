@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
+import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'component/widgets.dart';
@@ -50,17 +51,33 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.all(10),
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+              padding: const EdgeInsets.all(10),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SearchScreen()));
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  width: MediaQuery.of(context).size.width - 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Find products ,deals ,shops....",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      Icon(Icons.search),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey),
+                  ),
                 ),
-                suffixIcon: Icon(Icons.search),
-                hintText: "Find products,deals,shops....",
-              ),
-            ),
-          ),
+              )),
           MySlider(),
           Container(
             child: Text(
@@ -76,8 +93,6 @@ class _HomePageState extends State<HomePage> {
           Container(
             height: MediaQuery.of(context).size.height / 4,
             child: GridView.builder(
-//                shrinkWrap: true,
-//                physics: ScrollPhysics(),
               padding: EdgeInsets.all(10),
               itemCount: placesImg.length,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -90,6 +105,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
+            height: MediaQuery.of(context).size.height / 2,
             padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
             child: Column(
               children: [
@@ -105,31 +121,24 @@ class _HomePageState extends State<HomePage> {
                   trailing: Icon(
                     Icons.arrow_forward,
                   ),
+                  onTap: () {},
                 ),
-//                buildInkWell("images/fourth.jpg", "test")
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(10),
             width: double.infinity,
             height: MediaQuery.of(context).size.height / 4,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                    margin: EdgeInsets.only(right: 20),
+            child: InkWell(
+              onTap: () {},
+              child: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => Container(
+                    margin: EdgeInsets.only(right: 10),
                     child: Image.asset('images/third.jpeg')),
-                Container(
-                    margin: EdgeInsets.only(right: 20),
-                    child: Image.asset('images/third.jpeg')),
-                Container(
-                    margin: EdgeInsets.only(right: 20),
-                    child: Image.asset('images/third.jpeg')),
-                Container(
-                    margin: EdgeInsets.only(right: 20),
-                    child: Image.asset('images/third.jpeg')),
-              ],
+              ),
             ),
           ),
         ]),
@@ -137,3 +146,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+//Container(
+//                  width: double.infinity,
+//                  height: MediaQuery.of(context).size.height / 4,
+//                  child: ListView.builder(
+//                    itemBuilder: (context, index) => Container(
+//                      child: Image.asset('images/third.jpeg'),
+//                    ),
+//                  ),
+//                  height: MediaQuery.of(context).size.height / 4,
+//                  decoration: BoxDecoration(
+//                    image: DecorationImage(
+//                      image: AssetImage('images/third.jpeg'),
+//                      //fit: BoxFit.fitHeight,
+//                    ),
+//                  ),

@@ -1,5 +1,7 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
+import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -90,13 +92,49 @@ class _OrderScreenState extends State<OrderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: buildOutlinedButton(Icons.mail),
+                      child: buildOutlinedButton(
+                        Icons.mail,
+                        Inbox(),
+                      ),
                     ),
                     Expanded(
-                      child: buildOutlinedButton(Icons.phone),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              content: Container(
+                                height: 100,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Call"),
+                                    Text("+201102005599"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Icon(
+                          Icons.phone,
+                          color: Colors.orange,
+                        ),
+                        style: ButtonStyle(
+                          side: MaterialStateProperty.all<BorderSide>(
+                              BorderSide(color: const Color(c))),
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                      ),
                     ),
                     Expanded(
-                      child: buildOutlinedButton(Icons.directions),
+                      child: buildOutlinedButton(
+                        Icons.directions,
+                        DirectionsScreen(),
+                      ),
                     ),
                   ],
                 ),
@@ -149,9 +187,13 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  OutlinedButton buildOutlinedButton(IconData ic) {
+  OutlinedButton buildOutlinedButton(IconData ic, Widget w) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => w),
+        );
+      },
       child: Icon(
         ic,
         color: Colors.orange,

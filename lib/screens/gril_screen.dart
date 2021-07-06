@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,10 @@ class _GrilState extends State<Gril> {
     return Card(
       elevation: 5,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => OrderScreen()));
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -1,8 +1,10 @@
 import 'package:elsheikhzayedinfo/screens/business_locator_screen.dart';
 import 'package:elsheikhzayedinfo/screens/business_management_screen.dart';
+import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/info_screen.dart';
+import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -192,20 +194,29 @@ AppBar buildHomeAppBar() {
       ),
     ),
     actions: [
-      IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.shopping_cart,
-          color: Colors.black,
+      Builder(
+        builder: (ctx) => IconButton(
+          onPressed: () {
+            Navigator.of(ctx)
+                .push(MaterialPageRoute(builder: (ctx) => CartScreen()));
+          },
+          icon: Icon(
+            Icons.shopping_cart,
+            color: Colors.black,
+          ),
         ),
       ),
-      IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.notifications_none,
-          color: Colors.black,
-        ),
-      )
+      Builder(
+          builder: (ctx) => IconButton(
+                onPressed: () {
+                  Navigator.of(ctx).push(MaterialPageRoute(
+                      builder: (ctx) => NotificationScreen()));
+                },
+                icon: Icon(
+                  Icons.notifications_none,
+                  color: Colors.black,
+                ),
+              ))
     ],
   );
 }

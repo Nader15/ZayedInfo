@@ -24,7 +24,7 @@ class InfoScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 3,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/restaurant.jpg'),
+                image: AssetImage('images/deal.jpg'),
                 fit: BoxFit.fill,
               ),
             ),

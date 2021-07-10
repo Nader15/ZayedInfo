@@ -104,28 +104,38 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.height / 2,
-            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(
-                    "Recent Product",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward,
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
+          // Container(
+          //   height: MediaQuery.of(context).size.height / 2,
+          //   padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+          //   child: Column(
+          //     children: [
+          //       Row(
+          //         children: [
+          //           Text(
+          //             "Recent Product",
+          //             style: TextStyle(
+          //               color: Colors.black,
+          //               fontSize: 25,
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //           ),
+          //           ListTile(
+          //             title: Text("Show all"),
+          //             trailing: Icon(Icons.arrow_forward_sharp),
+          //             onTap: (){},
+          //           )
+          //         ],
+          //       ),
+          //       InkWell(
+          //         child: Column(children: [
+          //           Container(color: Colors.black,),
+          //           Text("test"),
+          //           Text("21.0"),
+          //         ],),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Container(
             padding: EdgeInsets.all(10),
             width: double.infinity,

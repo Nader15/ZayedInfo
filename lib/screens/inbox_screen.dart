@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:flutter/material.dart';
 
 class Inbox extends StatefulWidget {
@@ -32,6 +33,9 @@ class _InboxState extends State<Inbox> {
                     itemCount: 10,
                     itemBuilder: (context, indeex) {
                       return InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MessageScreen()));
+                        },
                         child: ListTile(
                           leading: CircleAvatar(
                             child: Icon(

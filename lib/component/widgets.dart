@@ -8,6 +8,9 @@ import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 // Drawer
 class MyDrawer extends StatefulWidget {
@@ -17,6 +20,16 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   int _radioGroupValue = 0;
+
+  // late Locale _locale;
+  //
+  // changeLanguage(Locale locale) {
+  //   setState(() {
+  //     _locale = locale;
+  //   });
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -142,15 +155,19 @@ class _MyDrawerState extends State<MyDrawer> {
                         ListTile(
                           title: Text("English"),
                           leading: Radio(
-                            value: null,
+                            value: 2,
                             groupValue: _radioGroupValue,
-                            onChanged: null,
+                            onChanged: (value){
+                              setState(() {
+                               // _radioGroupValue= value;
+                              });
+                            },//EasyLocalization.of(context)!.locale=('ar','en'),
                           ),
                         ),
                         ListTile(
                           title: Text("العربيه"),
                           leading: Radio(
-                            value: null,
+                            value: 0,
                             groupValue: _radioGroupValue,
                             onChanged: null,
                           ),

@@ -1,5 +1,5 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
-import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
+//import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:flutter/material.dart';
 
 class BookMarkScreen extends StatefulWidget {

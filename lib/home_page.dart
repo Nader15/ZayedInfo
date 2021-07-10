@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     'images/atm.jpg',
     'images/bank.jpg',
     'images/beauty.jpg',
+    'images/restaurant.jpg',
   ];
 
   List placenameli = [
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
     'ATMs',
     'Banks',
     'Beauty',
+    'Resturant',
   ];
 
   List<Widget> pages = [
@@ -36,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     Categories(),
   ];
   int pageIndex = 0;
+
   void x(int index) {
     setState(() {
       pageIndex = index;
@@ -137,20 +140,33 @@ class _HomePageState extends State<HomePage> {
           //   ),
           // ),
           Container(
-            padding: EdgeInsets.all(10),
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height / 4,
-            child: InkWell(
-              onTap: () {},
-              child: ListView.builder(
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Container(
-                    margin: EdgeInsets.only(right: 10),
-                    child: Image.asset('images/third.jpeg')),
-              ),
-            ),
-          ),
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              // height: MediaQuery.of(context).size.height / 4
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("gjjfyjf"),
+                      Text("gjjfyjf"),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 200,
+                    child: ListView.builder(
+                      // physics: ScrollPhysics(),
+                      // shrinkWrap: true,
+                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child: Image.asset('images/third.jpeg')),
+                    ),
+                  ),
+                ],
+              )),
         ]),
       ),
     );

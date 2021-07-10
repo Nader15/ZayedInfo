@@ -17,6 +17,8 @@ class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEFEFEF),
+
       appBar: BuildScreensAppBar(
         "El Sheikh Zayed info",
       ),

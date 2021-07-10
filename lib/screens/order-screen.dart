@@ -43,9 +43,14 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            Icons.arrow_back,
+                          IconButton(
                             color: Colors.white,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back,
+                            ),
                           ),
                           Text(
                             "Lucca Steakhouse Egypt",

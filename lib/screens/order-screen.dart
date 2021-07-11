@@ -78,9 +78,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildProductButton("PRODUCT"),
-                    buildProductButton("REVIEWS"),
-                    buildProductButton("GALLERY"),
+                    buildProductButton("PRODUCT",(){}),
+                    buildProductButton("REVIEWS",(){}),
+                    buildProductButton("GALLERY",(){}),
                   ],
                 ),
               ),
@@ -99,29 +99,13 @@ class _OrderScreenState extends State<OrderScreen> {
                     Expanded(
                       child: buildOutlinedButton(
                         Icons.mail,
-                        Inbox(),
+                          (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Inbox(),));}
                       ),
                     ),
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              content: Container(
-                                height: 100,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Call"),
-                                    Text("+201102005599"),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
+                          buildDialog(context, "+201102005599");
                         },
                         child: Icon(
                           Icons.phone,
@@ -138,7 +122,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     Expanded(
                       child: buildOutlinedButton(
                         Icons.directions,
-                        DirectionsScreen(),
+                          (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=> DirectionsScreen(),));}
                       ),
                     ),
                   ],
@@ -192,13 +176,9 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  OutlinedButton buildOutlinedButton(IconData ic, Widget w) {
+  OutlinedButton buildOutlinedButton(IconData ic, VoidCallback? function) {
     return OutlinedButton(
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => w),
-        );
-      },
+      onPressed: function,
       child: Icon(
         ic,
         color: Colors.orange,
@@ -211,12 +191,10 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Expanded buildProductButton(String label) {
+  Expanded buildProductButton(String label,VoidCallback? f) {
     return Expanded(
       child: ElevatedButton(
-        onPressed: () {
-          setState(() {});
-        },
+        onPressed: f,
         child: Text(label),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),

@@ -36,8 +36,9 @@ class _TestScreenState extends State<TestScreen> {
                       "test",
                       style: TextStyle(color: Colors.white),
                     ),
-                    leading: Icon(
-                      Icons.arrow_back_ios,
+                    leading: IconButton(
+                      icon: Icon(Icons.arrow_back_ios,),
+                      onPressed: (){Navigator.of(context).pop();},
                       color: Colors.white,
                     ),
                     trailing: Icon(

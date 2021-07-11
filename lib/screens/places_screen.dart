@@ -6,8 +6,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 
-
-
 import 'google_map.dart';
 
 class PlaceScreen extends StatefulWidget {
@@ -18,12 +16,10 @@ class PlaceScreen extends StatefulWidget {
 }
 
 class _PlaceScreenState extends State<PlaceScreen> {
-
-  static const _url = 'https://api.whatsapp.com/...';
-
-  void _launchURL() async => await canLaunch(_url)
-      ? await launch(_url) : throw 'Not found $_url';
-
+  void luncheWhatsApp({@required number, @required message}) async {
+    String url = "whatsapp://send?phone$number&text=$message";
+    await canLaunch(url) ? launch(url) : print("can't open whatsapp");
+  }
 
   // openFaceBook(String link){
   //   final url =
@@ -107,15 +103,26 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   child: ListTile(
                     title: Text(
                       "Nile Scan & Labs",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                     ),
                     leading: Icon(
                       Icons.arrow_back_ios,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
-                    trailing: Icon(
-                      Icons.bookmark_border,
-                      color: Colors.white,
+                    trailing: SizedBox(
+                      width: MediaQuery.of(context).size.width / 4,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.bookmark_border,
+                            color: Colors.black,
+                          ),
+                          Icon(
+                            Icons.bookmark_border,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -193,11 +200,24 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     ),
                     Row(
                       children: [
-                        buildOutlinedButton(Icons.blur_circular_outlined, () {}),
-                        buildOutlinedButton(Icons.phone, () {_launchURL();}),
-                        buildOutlinedButton(Icons.facebook, ()=>WebView(
-                          initialUrl: 'https://flutter.dev',
-                        ),),
+                        buildOutlinedButton(
+                            Icons.blur_circular_outlined,
+                            () => Scaffold(body:
+                                    Builder(builder: (BuildContext context) {
+                                  return WebView(
+                                    initialUrl: 'http://nilescanandlabs.net/http://nilescanandlabs.net/',
+                                  );
+                                }))),
+                        buildOutlinedButton(Icons.phone, () {
+                          luncheWhatsApp(
+                              number: "01121911432", message: "Hello");
+                        }),
+                        buildOutlinedButton(
+                          Icons.facebook,
+                          () => WebView(
+                            initialUrl: 'https://flutter.dev',
+                          ),
+                        ),
                       ],
                     ),
                     Row(

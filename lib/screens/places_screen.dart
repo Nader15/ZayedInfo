@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 import 'google_map.dart';
 
@@ -16,27 +17,8 @@ class PlaceScreen extends StatefulWidget {
 }
 
 class _PlaceScreenState extends State<PlaceScreen> {
-  void luncheWhatsApp({@required number, @required message}) async {
-    String url = "whatsapp://send?phone$number&text=$message";
-    await canLaunch(url) ? launch(url) : print("can't open whatsapp");
-  }
-
-  // openFaceBook(String link){
-  //   final url =
-  //       "web://$link";
-  //   if ( UrlLauncher.canLaunch(url)) async {
-  //   await UrlLauncher.launch(url,forceSafariVC: false);
-  //   } else {
-  //   throw 'Could not launch $url';
-  //   }
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
+  Widget _widget = Container();
+  bool b = true;
 
   static const int c = 0xFFFF0000;
 
@@ -48,7 +30,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
           onPressed: f,
           child: Icon(
             ic,
-            color: Colors.orange,
+            color: Colors.deepOrange,
           ),
           style: ButtonStyle(
             side: MaterialStateProperty.all<BorderSide>(
@@ -60,21 +42,24 @@ class _PlaceScreenState extends State<PlaceScreen> {
     );
   }
 
-  Widget buildcontainer(String label) {
+  Widget buildcontainer(String label, VoidCallback? f) {
     return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(right: 5),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
+      child: InkWell(
+        onTap: f,
+        child: Container(
+          margin: EdgeInsets.only(right: 5),
+          padding: EdgeInsets.all(10),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+            ),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: Colors.deepOrange,
+          decoration: BoxDecoration(
+            color: Colors.deepOrange,
+          ),
         ),
       ),
     );
@@ -84,49 +69,43 @@ class _PlaceScreenState extends State<PlaceScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            "Nile Scan & Labs",
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.bookmark_border),
+              color: Colors.black,
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.share),
+              color: Colors.black,
+              onPressed: () {},
+            ),
+          ],
+        ),
         backgroundColor: Color(0xffEFEFEF),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(alignment: AlignmentDirectional.topCenter, children: [
-                Container(
-                  height: MediaQuery.of(context).size.height / 4,
-                  padding: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage('images/elnil.png'),
-                    ),
+              Container(
+                height: MediaQuery.of(context).size.height / 4,
+                padding: const EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('images/elnil.png'),
                   ),
                 ),
-                Container(
-                  child: ListTile(
-                    title: Text(
-                      "Nile Scan & Labs",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    leading: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
-                    ),
-                    trailing: SizedBox(
-                      width: MediaQuery.of(context).size.width / 4,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.bookmark_border,
-                            color: Colors.black,
-                          ),
-                          Icon(
-                            Icons.bookmark_border,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
+              ),
               InkWell(
                 onTap: () {},
                 child: Stack(
@@ -163,15 +142,74 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildcontainer("PRODUCT "),
-                    buildcontainer("REVIEWS"),
-                    buildcontainer("GALLERY"),
+                    buildcontainer("PRODUCT ", () {
+                      setState(() {
+                        b = true;
+                        _widget = Text(
+                          "No products found",
+                          style: TextStyle(fontSize: 20),
+                        );
+                      });
+                    }),
+                    buildcontainer("REVIEWS", () {
+                      setState(() {
+                        b = true;
+                        _widget = Expanded(
+                          child: Container(
+                            //  padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width - 20,
+                            height: 70,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "No reviews",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),
+                                    width:
+                                        MediaQuery.of(context).size.width - 20,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Add Review",
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.deepOrange),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                    }),
+                    buildcontainer("GALLERY", () {
+                      setState(() {
+                        b = true;
+                        _widget = ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          itemBuilder: (context, index) => (Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Image.asset('images/elnil.png'),
+                          )),
+                        );
+                      });
+                    }),
                   ],
                 ),
               ),
               Container(
-                height: 50,
-                child: Text("No Products found"),
+                height: 100,
+                child: _widget,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -200,24 +238,18 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     ),
                     Row(
                       children: [
+                        buildOutlinedButton(Icons.blur_circular_outlined,
+                            () => launch('http://nilescanandlabs.net/')),
                         buildOutlinedButton(
-                            Icons.blur_circular_outlined,
-                            () => Scaffold(body:
-                                    Builder(builder: (BuildContext context) {
-                                  return WebView(
-                                    initialUrl: 'http://nilescanandlabs.net/http://nilescanandlabs.net/',
-                                  );
-                                }))),
-                        buildOutlinedButton(Icons.phone, () {
-                          luncheWhatsApp(
-                              number: "01121911432", message: "Hello");
-                        }),
+                          Icons.phone,
+                          () => launch(
+                              'https://api.whatsapp.com/send?phone=27768483016 '),
+                        ),
                         buildOutlinedButton(
                           Icons.facebook,
-                          () => WebView(
-                            initialUrl: 'https://flutter.dev',
-                          ),
-                        ),
+                          () => launch(
+                              'https://www.facebook.com/nilescanandlabs/'),
+                        )
                       ],
                     ),
                     Row(

@@ -2,11 +2,7 @@ import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/link.dart';
-
 import 'google_map.dart';
 
 class PlaceScreen extends StatefulWidget {
@@ -22,6 +18,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
 
   static const int c = 0xFFFF0000;
 
+
+// build massege , phone , ... buttons
   Widget buildOutlinedButton(IconData ic, VoidCallback? f) {
     return Expanded(
       child: Container(
@@ -42,6 +40,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
     );
   }
 
+// build product , reviews , gallary buttons
   Widget buildcontainer(String label, VoidCallback? f) {
     return Expanded(
       child: InkWell(
@@ -75,8 +74,9 @@ class _PlaceScreenState extends State<PlaceScreen> {
             "Nile Scan & Labs",
             style: TextStyle(color: Colors.black),
           ),
-          leading: Icon(
-            Icons.arrow_back_ios,
+          leading: IconButton(
+           icon:Icon( Icons.arrow_back_ios),
+            onPressed: (){Navigator.of(context).pop();},
             color: Colors.black,
           ),
           actions: [

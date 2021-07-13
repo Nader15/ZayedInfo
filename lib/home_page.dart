@@ -1,9 +1,12 @@
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
+import 'package:elsheikhzayedinfo/screens/shops_neary_screen.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'component/my_drawer.dart';
 import 'component/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -125,7 +128,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProductResultScreen()));
+                      },
                       child: Text(
                         "Show All",
                         style: TextStyle(
@@ -139,23 +145,34 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TestScreen()));
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => TestScreen()));
                   },
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                    Container(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Image.asset(
-                        'images/sh.jpg',
-                        width: 200,
-                      ),
-                      // Ink.image(image: AssetImage('images/sh.jpg')),
-                    ),
-                    Text("test",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                    Text("21.0",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.deepOrange),),
-                  ]),
+                        Container(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Image.asset(
+                            'images/sh.jpg',
+                            width: 200,
+                          ),
+                          // Ink.image(image: AssetImage('images/sh.jpg')),
+                        ),
+                        Text(
+                          "test",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "21.0",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepOrange),
+                        ),
+                      ]),
                 )
               ],
             ),
@@ -163,7 +180,6 @@ class _HomePageState extends State<HomePage> {
           Container(
               padding: EdgeInsets.all(10),
               width: double.infinity,
-
               child: Column(
                 children: [
                   Row(
@@ -175,7 +191,10 @@ class _HomePageState extends State<HomePage> {
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SopNearbyScreen()));
+                        },
                         child: Text(
                           "Show All",
                           style: TextStyle(
@@ -196,8 +215,9 @@ class _HomePageState extends State<HomePage> {
                       itemCount: 5,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceScreen()));
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PlaceScreen()));
                         },
                         child: Container(
                             margin: EdgeInsets.only(right: 10),
@@ -212,4 +232,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

@@ -13,9 +13,11 @@ import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
+import 'package:elsheikhzayedinfo/screens/shops_neary_screen.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PlaceScreen(),
+      home: TestScreen(),
     );
   }
 }

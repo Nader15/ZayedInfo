@@ -43,6 +43,7 @@ class _MessageScreenState extends State<MessageScreen> {
             ],
           ),
         ),
+
         Container(
           color: Colors.white,
           child: ListTile(
@@ -50,6 +51,14 @@ class _MessageScreenState extends State<MessageScreen> {
               decoration: InputDecoration(
                 hintText: "Send message",
                 fillColor: Colors.white,
+              ),
+            ),
+            trailing: Container(
+              color: Colors.deepOrange,
+              child: IconButton(
+                onPressed: (){},
+                  icon : Icon(Icons.send),
+                color: Colors.white,
               ),
             ),
           ),

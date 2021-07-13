@@ -10,10 +10,12 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   Color c1 = Colors.grey;
   Color c2 = Colors.orange;
-  // bool _hasBeenPressed = false;
+  bool _firstHasBeenPressed = true;
+  bool _secondHasBeenPressed = false;
+  bool _productHasBeenPressed = false;
+  bool _storesHasBeenPressed = true;
   double _value = 0.0;
-
-  //List<bool> isSelected = List.generate(10, (index) => false);
+  double _value1 = 0.0;
 
   int tappedIndex = -1;
 
@@ -22,6 +24,48 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     tappedIndex = -1;
   }
+
+  Widget _rowWidget(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Location:",
+          style: TextStyle(fontSize: 20),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            "Current Location",
+            style: TextStyle(color: Colors.orange, fontSize: 20),
+          ),
+        ),
+      ],
+    );
+  }
+Widget sliderWidget(){
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Price: ${(_value1).round()} EGP",
+          style: TextStyle(fontSize: 20),
+        ),
+        Slider(
+          inactiveColor: Colors.black12,
+          activeColor: Colors.orange,
+          value: _value1,
+          onChanged: (double val) {
+            setState(() {
+              _value1 = val;
+            });
+          },
+          max: 10000,
+          min: 0,
+        ),
+      ],
+    );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +82,149 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Location:",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Current Location",
-                          style: TextStyle(color: Colors.orange, fontSize: 20),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              "NEARBY ",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: _firstHasBeenPressed
+                                      ? Colors.white
+                                      : Colors.grey),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: _firstHasBeenPressed
+                                  ? Colors.deepOrange
+                                  : Colors.white,
+                              border: Border.all(
+                                  color:  _firstHasBeenPressed
+                                      ? Colors.white
+                                      : Colors.grey
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _secondHasBeenPressed=false;
+                              _firstHasBeenPressed = !_firstHasBeenPressed;
+                            });
+                          },
                         ),
-                      ),
-                    ],
+                        InkWell(
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              "RECENT ",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: _secondHasBeenPressed
+                                      ? Colors.white
+                                      : Colors.grey),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: _secondHasBeenPressed
+                                  ? Colors.deepOrange
+                                  : Colors.white,
+                              border: Border.all(
+                                color:  _secondHasBeenPressed
+                                    ? Colors.white
+                                    : Colors.grey
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _firstHasBeenPressed =false;
+                              _secondHasBeenPressed = !_secondHasBeenPressed;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: _firstHasBeenPressed? _rowWidget() : Container(),
+                  ),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              "PRODUCT ",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: _productHasBeenPressed
+                                      ? Colors.deepOrange
+                                      : Colors.grey),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                  color:  _productHasBeenPressed
+                                      ? Colors.deepOrange
+                                      : Colors.grey
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _storesHasBeenPressed=false;
+                              _productHasBeenPressed = !_productHasBeenPressed;
+                            });
+                          },
+                        ),
+                        InkWell(
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              "STORES ",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: _storesHasBeenPressed
+                                      ? Colors.deepOrange
+                                      : Colors.grey),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+
+                              border: Border.all(
+                                  color:  _storesHasBeenPressed
+                                      ? Colors.deepOrange
+                                      : Colors.grey
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _productHasBeenPressed =false;
+                              _storesHasBeenPressed = !_storesHasBeenPressed;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(10),
@@ -76,7 +248,6 @@ class _SearchScreenState extends State<SearchScreen> {
                               child: Text(
                                 "ALL CATEGORIES $index",
                                 style: TextStyle(
-                                  // color: isSelected[index] ? c2 : c1,
                                   color: tappedIndex == index ? c2 : c1,
                                   fontSize: 15,
                                 ),
@@ -84,7 +255,6 @@ class _SearchScreenState extends State<SearchScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                  //color: isSelected[index] ? c2 : c1,
                                   color: tappedIndex == index ? c2 : c1,
                                 ),
                               ),
@@ -92,7 +262,6 @@ class _SearchScreenState extends State<SearchScreen> {
                             onTap: () {
                               setState(() {
                                 tappedIndex = index;
-                                // isSelected[index] = !isSelected[index];
                               });
                             },
                           );
@@ -128,6 +297,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ],
                     ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: _productHasBeenPressed? sliderWidget(): Container(),
                   ),
                 ],
               ),

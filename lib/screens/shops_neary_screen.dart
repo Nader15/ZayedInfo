@@ -1,22 +1,23 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
-import 'package:elsheikhzayedinfo/screens/order-screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
+import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
-class Gril extends StatefulWidget {
+class SopNearbyScreen extends StatefulWidget {
+  const SopNearbyScreen({Key? key}) : super(key: key);
+
   @override
-  _GrilState createState() => _GrilState();
+  _SopNearbyScreenState createState() => _SopNearbyScreenState();
 }
 
-class _GrilState extends State<Gril> {
-
+class _SopNearbyScreenState extends State<SopNearbyScreen> {
   TextStyle _s = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
 
-  Card buildPlaceCard(double distance, String shopName, String location,VoidCallback? f) {
+  Card buildPlaceCard(String imageName,double distance, String shopName, String location,VoidCallback? f) {
     return Card(
       elevation: 5,
       child: InkWell(
@@ -34,7 +35,7 @@ class _GrilState extends State<Gril> {
                     //borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('images/restaurant.jpg'),
+                      image: AssetImage(imageName),
                     ),
                   ),
                 ),
@@ -123,21 +124,54 @@ class _GrilState extends State<Gril> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar("Grill"),
-      body: ListView(
-        padding: EdgeInsets.all(5),
-        children: [
-          buildPlaceCard(2.45, "Lucca Steakhouse Egypt",
-              "Al Guezira Plaza 6 October City,Giza Government",(){ Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => OrderScreen()));}),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "Shops nearby",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          color: Colors.black,
+        ),
+        actions: [
+          IconButton(
+            color: Colors.black,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SearchScreen()));
+            },
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            color: Colors.black,
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => CartScreen()));
+            },
+            icon: Icon(Icons.shopping_cart_outlined),
+          ),
         ],
       ),
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) => buildPlaceCard('images/elnil.png', 30,
+            "Nile Scan 7 Labs", "الشيخ زايد السادس من اكتوبر", () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => PlaceScreen()));
+        }),
+      ),
     );
-
   }
-
-
 }

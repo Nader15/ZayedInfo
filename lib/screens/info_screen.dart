@@ -16,9 +16,11 @@ class InfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEFEFEF),
+
       appBar: BuildScreensAppBar("El Sheikh Zayed info"),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             height: MediaQuery.of(context).size.height / 3,

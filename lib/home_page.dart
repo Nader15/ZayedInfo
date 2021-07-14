@@ -47,9 +47,127 @@ class _HomePageState extends State<HomePage> {
   void x(int index) {
     setState(() {
       pageIndex = index;
-      // pages[pageIndex];
     });
   }
+  // VoidCallback? imageDirection ;
+  // // Widget discountAndRecentproduct(String rowLabel, String imageName,String offerName,String priceOrPlaceName,
+  // //     VoidCallback? showAllDirection, VoidCallback? imageDirection) {
+  // //   return Container(
+  // //     padding: EdgeInsets.all(10),
+  // //     child: Column(
+  // //       children: [
+  // //         Row(
+  // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  // //           children: [
+  // //             Text(
+  // //               rowLabel,
+  // //               style: TextStyle(
+  // //                 color: Colors.black,
+  // //                 fontSize: 25,
+  // //                 fontWeight: FontWeight.bold,
+  // //               ),
+  // //             ),
+  // //             InkWell(
+  // //               onTap: showAllDirection,
+  // //               child: Text(
+  // //                 "Show All",
+  // //                 style: TextStyle(
+  // //                   color: Colors.deepOrange,
+  // //                 ),
+  // //               ),
+  // //             ),
+  // //           ],
+  // //         ),
+  // //         SizedBox(
+  // //           height: 20,
+  // //         ),
+  // //         InkWell(
+  // //           onTap: imageDirection,
+  // //           child:
+  // //               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  // //             Container(
+  // //               alignment: AlignmentDirectional.topStart,
+  // //               child: Image.asset(
+  // //                 imageName,
+  // //                 width: MediaQuery.of(context).size.width / 2,
+  // //               ),
+  // //             ),
+  // //             Text(
+  // //               offerName,
+  // //               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+  // //             ),
+  // //             Text(
+  // //               priceOrPlaceName,
+  // //               style: TextStyle(
+  // //                   fontSize: 15,
+  // //                   fontWeight: FontWeight.bold,
+  // //                   color: Colors.deepOrange),
+  // //             ),
+  // //           ]),
+  // //         )
+  // //       ],
+  // //     ),
+  // //   );
+  // // }
+  //
+  // Row discountAndRecentproductRow(String rowLabel ,VoidCallback? showAllDirection){
+  //   return  Row(
+  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //     children: [
+  //       Text(
+  //         rowLabel,
+  //         style: TextStyle(
+  //           color: Colors.black,
+  //           fontSize: 25,
+  //           fontWeight: FontWeight.bold,
+  //         ),
+  //       ),
+  //       InkWell(
+  //         onTap: showAllDirection,
+  //         child: Text(
+  //           "Show All",
+  //           style: TextStyle(
+  //             color: Colors.deepOrange,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+  // InkWell imageDirection(){
+  //   return   InkWell(
+  //       onTap: () {
+  //     Navigator.of(context).push(MaterialPageRoute(
+  //         builder: (context) => ProductResultScreen()));
+  //   },);
+  // }
+  // Text offerName(String offerName){
+  //   return  Text(
+  //     offerName,
+  //     style: TextStyle(
+  //         fontSize: 15, fontWeight: FontWeight.bold),
+  //   );
+  // }
+  //
+  // Text priceOrPalceName(String priceOrPlaceName){
+  //   return Text(
+  //     priceOrPlaceName,
+  //     style: TextStyle(
+  //         fontSize: 15,
+  //         fontWeight: FontWeight.bold,
+  //         color: Colors.deepOrange),
+  //   );
+  // }
+  //
+  // Container imageContainer(String imageName){
+  //   return Container(
+  //     alignment: AlignmentDirectional.topStart,
+  //     child: Image.asset(
+  //       imageName,
+  //       width: MediaQuery.of(context).size.width / 2,
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +238,89 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
+                      "Discount near you",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProductResultScreen()));
+                      },
+                      child: Text(
+                        "Show All",
+                        style: TextStyle(
+                          color: Colors.deepOrange,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => TestScreen()));
+                  },
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Stack(
+                              alignment: AlignmentDirectional.topEnd,
+                              children:[ Image.asset(
+                              'images/sh.jpg',
+                              width: MediaQuery.of(context).size.width / 2,
+                            ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                alignment: AlignmentDirectional.center,
+                                height: 40,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xffed2939),
+                                ),
+                                child: Text(
+                                  "50 %",
+                                  style: TextStyle(color: Colors.white,fontSize: 15),
+                                ),
+                              ),
+                            ]
+                          ),
+                        ),
+                        Text(
+                          "Mohammed",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "ماركتى",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepOrange),
+                        ),
+                      ]),
+                )
+              ],
+            ),
+          ),
+
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
                       "Recent Product",
                       style: TextStyle(
                         color: Colors.black,
@@ -156,9 +357,8 @@ class _HomePageState extends State<HomePage> {
                           alignment: AlignmentDirectional.topStart,
                           child: Image.asset(
                             'images/sh.jpg',
-                            width: 200,
+                            width: MediaQuery.of(context).size.width / 2,
                           ),
-                          // Ink.image(image: AssetImage('images/sh.jpg')),
                         ),
                         Text(
                           "test",

@@ -11,6 +11,7 @@ import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/info_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
+import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TestScreen(),
+      home: OffersNearbyScreen(),
     );
   }
 }

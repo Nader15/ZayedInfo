@@ -46,6 +46,7 @@ class _ProductResultScreenState extends State<ProductResultScreen> {
                     children: [
                       Text("test"),
                       Container(
+                        alignment: AlignmentDirectional.center,
                         height: 30,
                         width: MediaQuery.of(context).size.width / 8,
                         decoration: BoxDecoration(
@@ -56,7 +57,6 @@ class _ProductResultScreenState extends State<ProductResultScreen> {
                           "21.0",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
                         ),
                       )
                     ],

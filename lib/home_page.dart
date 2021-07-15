@@ -1,4 +1,6 @@
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
+import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
+import 'package:elsheikhzayedinfo/screens/offer_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
@@ -49,125 +51,84 @@ class _HomePageState extends State<HomePage> {
       pageIndex = index;
     });
   }
-  // VoidCallback? imageDirection ;
-  // // Widget discountAndRecentproduct(String rowLabel, String imageName,String offerName,String priceOrPlaceName,
-  // //     VoidCallback? showAllDirection, VoidCallback? imageDirection) {
-  // //   return Container(
-  // //     padding: EdgeInsets.all(10),
-  // //     child: Column(
-  // //       children: [
-  // //         Row(
-  // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  // //           children: [
-  // //             Text(
-  // //               rowLabel,
-  // //               style: TextStyle(
-  // //                 color: Colors.black,
-  // //                 fontSize: 25,
-  // //                 fontWeight: FontWeight.bold,
-  // //               ),
-  // //             ),
-  // //             InkWell(
-  // //               onTap: showAllDirection,
-  // //               child: Text(
-  // //                 "Show All",
-  // //                 style: TextStyle(
-  // //                   color: Colors.deepOrange,
-  // //                 ),
-  // //               ),
-  // //             ),
-  // //           ],
-  // //         ),
-  // //         SizedBox(
-  // //           height: 20,
-  // //         ),
-  // //         InkWell(
-  // //           onTap: imageDirection,
-  // //           child:
-  // //               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  // //             Container(
-  // //               alignment: AlignmentDirectional.topStart,
-  // //               child: Image.asset(
-  // //                 imageName,
-  // //                 width: MediaQuery.of(context).size.width / 2,
-  // //               ),
-  // //             ),
-  // //             Text(
-  // //               offerName,
-  // //               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-  // //             ),
-  // //             Text(
-  // //               priceOrPlaceName,
-  // //               style: TextStyle(
-  // //                   fontSize: 15,
-  // //                   fontWeight: FontWeight.bold,
-  // //                   color: Colors.deepOrange),
-  // //             ),
-  // //           ]),
-  // //         )
-  // //       ],
-  // //     ),
-  // //   );
-  // // }
-  //
-  // Row discountAndRecentproductRow(String rowLabel ,VoidCallback? showAllDirection){
-  //   return  Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: [
-  //       Text(
-  //         rowLabel,
-  //         style: TextStyle(
-  //           color: Colors.black,
-  //           fontSize: 25,
-  //           fontWeight: FontWeight.bold,
-  //         ),
-  //       ),
-  //       InkWell(
-  //         onTap: showAllDirection,
-  //         child: Text(
-  //           "Show All",
-  //           style: TextStyle(
-  //             color: Colors.deepOrange,
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-  // InkWell imageDirection(){
-  //   return   InkWell(
-  //       onTap: () {
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //         builder: (context) => ProductResultScreen()));
-  //   },);
-  // }
-  // Text offerName(String offerName){
-  //   return  Text(
-  //     offerName,
-  //     style: TextStyle(
-  //         fontSize: 15, fontWeight: FontWeight.bold),
-  //   );
-  // }
-  //
-  // Text priceOrPalceName(String priceOrPlaceName){
-  //   return Text(
-  //     priceOrPlaceName,
-  //     style: TextStyle(
-  //         fontSize: 15,
-  //         fontWeight: FontWeight.bold,
-  //         color: Colors.deepOrange),
-  //   );
-  // }
-  //
-  // Container imageContainer(String imageName){
-  //   return Container(
-  //     alignment: AlignmentDirectional.topStart,
-  //     child: Image.asset(
-  //       imageName,
-  //       width: MediaQuery.of(context).size.width / 2,
-  //     ),
-  //   );
-  // }
+
+
+  Widget placeContainer(){
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(7)
+      ),
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      padding: EdgeInsets.all(2),
+      height: MediaQuery.of(context).size.height/2.5,
+      width: MediaQuery.of(context).size.width/2,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+
+            child: Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children:[ Image.asset(
+                  'images/elnil.png',
+                  width: MediaQuery.of(context).size.width / 2,
+                ),
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    alignment: AlignmentDirectional.center,
+                    height: 40,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Color(0xffed2939),
+                    ),
+                    child: Text(
+                      "31 m ",
+                      style: TextStyle(color: Colors.white,fontSize: 15),
+                    ),
+                  ),
+                ]
+            ),
+          ),
+          Row(
+            children: [
+              Text("Nile Scan & Labs"),
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.location_on),
+              Text("الشيخ زايد السادس من أكتوبر")
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Row(
+                  children: [
+                    Icon(Icons.star_border),
+                    Text("0(0)"),
+                  ],
+                ),
+              ),
+              Container(
+                alignment: AlignmentDirectional.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.deepOrange
+                ),
+                width: 60,
+                height: 20,
+                child: Text("Clinics",style: TextStyle(color: Colors.white),),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ProductResultScreen()));
+                            builder: (context) => OffersNearbyScreen()));
                       },
                       child: Text(
                         "Show All",
@@ -264,8 +225,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => TestScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OffersScreen()));
                   },
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -274,26 +235,27 @@ class _HomePageState extends State<HomePage> {
                           alignment: AlignmentDirectional.topStart,
                           child: Stack(
                               alignment: AlignmentDirectional.topEnd,
-                              children:[ Image.asset(
-                              'images/sh.jpg',
-                              width: MediaQuery.of(context).size.width / 2,
-                            ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                alignment: AlignmentDirectional.center,
-                                height: 40,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Color(0xffed2939),
+                              children: [
+                                Image.asset(
+                                  'images/sh.jpg',
+                                  width: MediaQuery.of(context).size.width / 2,
                                 ),
-                                child: Text(
-                                  "50 %",
-                                  style: TextStyle(color: Colors.white,fontSize: 15),
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  alignment: AlignmentDirectional.center,
+                                  height: 40,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Color(0xffed2939),
+                                  ),
+                                  child: Text(
+                                    "50 %",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15),
+                                  ),
                                 ),
-                              ),
-                            ]
-                          ),
+                              ]),
                         ),
                         Text(
                           "Mohammed",
@@ -312,7 +274,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-
           Container(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -378,57 +339,55 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-              padding: EdgeInsets.all(10),
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Shops nearby ",
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Shops nearby ",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ShopNearbyScreen()));
+                      },
+                      child: Text(
+                        "Show All",
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SopNearbyScreen()));
-                        },
-                        child: Text(
-                          "Show All",
-                          style: TextStyle(
-                            color: Colors.deepOrange,
-                          ),
+                          color: Colors.deepOrange,
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 200,
-                    child: ListView.builder(
-                      // physics: ScrollPhysics(),
-                      // shrinkWrap: true,
-                      itemCount: 5,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PlaceScreen()));
-                        },
-                        child: Container(
-                            margin: EdgeInsets.only(right: 10),
-                            child: Image.asset('images/third.jpeg')),
-                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                   height: MediaQuery.of(context).size.height/2.4,
+                  child: ListView.builder(
+                    itemCount: 5,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PlaceScreen()));
+                      },
+                      child: placeContainer(),
                     ),
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ]),
       ),
     );
   }
 }
+

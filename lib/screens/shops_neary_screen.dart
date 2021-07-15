@@ -3,14 +3,14 @@ import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
-class SopNearbyScreen extends StatefulWidget {
-  const SopNearbyScreen({Key? key}) : super(key: key);
+class ShopNearbyScreen extends StatefulWidget {
+  const ShopNearbyScreen({Key? key}) : super(key: key);
 
   @override
-  _SopNearbyScreenState createState() => _SopNearbyScreenState();
+  _ShopNearbyScreenState createState() => _ShopNearbyScreenState();
 }
 
-class _SopNearbyScreenState extends State<SopNearbyScreen> {
+class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
   TextStyle _s = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,

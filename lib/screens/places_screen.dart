@@ -219,6 +219,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -252,37 +253,23 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "Nile Scan & Labs",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        )
-                      ],
+                    Text(
+                      "Nile Scan & Labs",
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "82 m",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
+                    Text(
+                      "82 m",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            " يضم مركز النيل للاشعه و التحاليل نخبه من اساتذه و اعضاء \n"
-                            " هيئه االتدريس بالقصر العينى و معهد الاورام ليضمنوا أفضل \n"
-                            " عنايه لمرضانا. النيل للاشعه و التحاليل أفضل مركز للاشعه \n "
-                            "و التحاليل فى مصر أكثر من عشرون عاما فى خدمه مرضانا \n "
-                            "و 6 فروع تجعلنا الرواد فى مجال عملنا \n ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.right,
-                          ),
-                        )
-                      ],
+                    Text(
+                      " يضم مركز النيل للاشعه و التحاليل نخبه من اساتذه و اعضاء "
+                      " هيئه االتدريس بالقصر العينى و معهد الاورام ليضمنوا أفضل "
+                      " عنايه لمرضانا. النيل للاشعه و التحاليل أفضل مركز للاشعه  "
+                      "و التحاليل فى مصر أكثر من عشرون عاما فى خدمه مرضانا  "
+                      "و 6 فروع تجعلنا الرواد فى مجال عملنا  ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.end,
                     ),
                   ],
                 ),
@@ -297,12 +284,21 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.deepOrange,
+                    Container(
+                      child: Icon(
+                        Icons.location_on,
+                        color: Colors.deepOrange,
+                      ),
+                      width: MediaQuery.of(context).size.width/10,
                     ),
-                    Text(
-                        "الشيخ زايد السادس من اكتوبر الجيزه بجوار \n مستشفي الشيخ زايد التخصصي"),
+                    Expanded(
+                      child: Container(
+                        child: Text(
+                          "الشيخ زايد السادس من اكتوبر الجيزه بجوار مستشفي الشيخ زايد التخصصي",
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -78,9 +78,13 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.bookmark_border),
+            icon:_bool? Icon(Icons.bookmark_border): Icon(Icons.bookmark),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _bool=!_bool;
+              });
+            },
           ),
           IconButton(
             icon: Icon(Icons.share),

@@ -16,7 +16,8 @@ class _GrilState extends State<Gril> {
     color: Colors.white,
   );
 
-  Card buildPlaceCard(double distance, String shopName, String location,VoidCallback? f) {
+  Card buildPlaceCard(double distance, String shopName, String location,
+      VoidCallback? f) {
     return Card(
       elevation: 5,
       child: InkWell(
@@ -28,7 +29,10 @@ class _GrilState extends State<Gril> {
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 4,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 4,
                   padding: const EdgeInsets.all(30),
                   decoration: BoxDecoration(
                     //borderRadius: BorderRadius.circular(10),
@@ -40,7 +44,10 @@ class _GrilState extends State<Gril> {
                 ),
                 Container(
                   padding: EdgeInsets.all(5),
-                  width: MediaQuery.of(context).size.width - 10,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 10,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -123,20 +130,24 @@ class _GrilState extends State<Gril> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildScreensAppBar("Grill"),
-      body: ListView(
-        padding: EdgeInsets.all(5),
-        children: [
-          buildPlaceCard(2.45, "Lucca Steakhouse Egypt",
-              "Al Guezira Plaza 6 October City,Giza Government",(){ Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => OrderScreen()));}),
-        ],
+      body: ListView.builder(
+          padding: EdgeInsets.all(5),
+          itemCount: 5,
+          itemBuilder: (context, index) =>
+              buildPlaceCard(2.45, "Lucca Steakhouse Egypt",
+                  "Al Guezira Plaza 6 October City,Giza Government", () {
+                    Navigator.of(context)
+                        .push(
+                        MaterialPageRoute(builder: (context) => OrderScreen()));
+                  }), 
+
       ),
     );
-
   }
 
 

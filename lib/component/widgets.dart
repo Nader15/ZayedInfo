@@ -4,58 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 
-// Home AppBar with three icons
-
-AppBar buildHomeAppBar() {
-  return AppBar(
-    leading: Builder(
-      builder: (context) => IconButton(
-        icon: Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
-        },
-      ),
-    ),
-    backgroundColor: Colors.white,
-    title: Text(
-      "El Sheikh Zayed info ",
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    actions: [
-      Builder(
-        builder: (ctx) => IconButton(
-          onPressed: () {
-            Navigator.of(ctx)
-                .push(MaterialPageRoute(builder: (ctx) => CartScreen()));
-          },
-          icon: Icon(
-            Icons.shopping_cart,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      Builder(
-          builder: (ctx) => IconButton(
-                onPressed: () {
-                  Navigator.of(ctx).push(MaterialPageRoute(
-                      builder: (ctx) => NotificationScreen()));
-                },
-                icon: Icon(
-                  Icons.notifications_none,
-                  color: Colors.black,
-                ),
-              ))
-    ],
-  );
-}
-
 // Screens AppBar
 
 AppBar BuildScreensAppBar(@required String pageTitle) {
@@ -121,27 +69,6 @@ class _MySliderState extends State<MySlider> {
   }
 }
 
-// Home widgets
-InkWell buildInkWellHome(
-    @required String imagename, @required String placename) {
-  return InkWell(
-    onTap: () {},
-    child: Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(imagename),
-            ),
-          ),
-        ),
-        Text(placename),
-      ],
-    ),
-  );
-}
 
 // Screen Widgets
 InkWell buildInkWell(BuildContext context, @required String imagename,

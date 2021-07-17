@@ -7,7 +7,6 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   static const _initialCameraPositio = CameraPosition(
     target: LatLng(30.056021, 30.976639),
   );
@@ -16,45 +15,70 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        alignment: AlignmentDirectional.bottomEnd,
-        children: [
-          GoogleMap(
-            initialCameraPosition: _initialCameraPositio,
-            myLocationEnabled: false,
-            zoomControlsEnabled: false,
-            onMapCreated: (controller) => _googleMapController = controller,
+    return  Stack(
+      alignment: AlignmentDirectional.bottomEnd,
+      children:[
+        GoogleMap(
+          initialCameraPosition: _initialCameraPositio,
+          myLocationEnabled: false,
+          zoomControlsEnabled: false,
+          onMapCreated: (controller) => _googleMapController = controller,
+        ),
+        Container(
+          color: Colors.white,
+          height: 70,
+          width: 30,
+          margin: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Icon(Icons.add),
+              Divider(color: Colors.grey,thickness: 1,),
+              Icon(Icons.minimize),
+
+            ],
           ),
-          Container(
-            margin: EdgeInsets.all(15),
-            height: 80,
-            width: 40,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.add,
-                  ),
-                  onPressed: () {},
-                ),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1,
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.minimize,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            color: Colors.white,
-          ),
-        ],
-      ),
+
+        ),
+      ]
     );
+     //  Stack(
+     // alignment: AlignmentDirectional.bottomEnd,
+     // children: [
+     //   GoogleMap(
+     //     initialCameraPosition: _initialCameraPositio,
+     //     myLocationEnabled: false,
+     //     zoomControlsEnabled: false,
+     //     onMapCreated: (controller) => _googleMapController = controller,
+     //   ),
+     //   Container(
+     //     margin: EdgeInsets.all(15),
+     //     height: 70,
+     //     width: 40,
+     //     child: Column(
+     //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+     //       children: [
+     //         IconButton(
+     //           icon: Icon(
+     //             Icons.add,
+     //           ),
+     //           onPressed: () {},
+     //         ),
+     //         Divider(
+     //           color: Colors.grey,
+     //           thickness: 1,
+     //         ),
+     //         IconButton(
+     //           icon: Icon(
+     //             Icons.minimize,
+     //           ),
+     //           onPressed: () {},
+     //         ),
+     //       ],
+     //     ),
+     //     color: Colors.white,
+     //   ),
+     // ],
+     //
+     //  );
   }
 }

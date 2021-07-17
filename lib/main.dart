@@ -4,6 +4,7 @@ import 'package:elsheikhzayedinfo/screens/business_locator_screen.dart';
 import 'package:elsheikhzayedinfo/screens/business_management_screen.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
+import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MapScreen(),
+      home: Home(),
     );
   }
 }

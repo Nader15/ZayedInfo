@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_timer/custom_timer.dart';
 
@@ -142,7 +143,7 @@ class _OffersScreenState extends State<OffersScreen> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: ListTile(
-              onTap: () {},
+              onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceScreen()));},
               leading: Icon(
                 Icons.location_on,
                 color: Colors.deepOrange,

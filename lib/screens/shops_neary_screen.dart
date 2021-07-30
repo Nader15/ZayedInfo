@@ -158,7 +158,7 @@ class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
             color: Colors.black,
             onPressed: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => CartScreen()));
+                  .push(MaterialPageRoute(builder: (context) => CartScreen(cartList: [],)));
             },
             icon: Icon(Icons.shopping_cart_outlined),
           ),

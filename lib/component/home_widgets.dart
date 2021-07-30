@@ -32,7 +32,7 @@ AppBar buildHomeAppBar() {
         builder: (ctx) => IconButton(
           onPressed: () {
             Navigator.of(ctx)
-                .push(MaterialPageRoute(builder: (ctx) => CartScreen()));
+                .push(MaterialPageRoute(builder: (ctx) => CartScreen(cartList: [],)));
           },
           icon: Icon(
             Icons.shopping_cart,

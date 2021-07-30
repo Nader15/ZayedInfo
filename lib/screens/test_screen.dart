@@ -1,3 +1,5 @@
+import 'package:elsheikhzayedinfo/models/cart_item.dart';
+import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,9 @@ class _TestScreenState extends State<TestScreen> {
 
   double price = 21.0;
   double increasement = 21.0;
+
+   // late CartItem item ;
+  // List <CartItem> cartList= [];
 
   Widget orderContainer() {
     return Container(
@@ -106,20 +111,31 @@ class _TestScreenState extends State<TestScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width / 2,
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  "CONFIRM",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
+              InkWell(
+                onTap: () {
+                 setState(() {
+                   // for( var i = 0 ; i < cartList.length; i++ ) {
+                   //   cartList.add(item);
+                   // }
+                   Navigator.of(context).push(MaterialPageRoute(
+                       builder: (context) => CartScreen(cartList: [CartItem("images/sh.jpg","Test", count,price)],)));
+                 });
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    color: Colors.deepOrange,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  textAlign: TextAlign.center,
+                  child: Text(
+                    "CONFIRM",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ],
@@ -283,7 +299,8 @@ class _TestScreenState extends State<TestScreen> {
                 ),
                 child: ListTile(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceScreen()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => PlaceScreen()));
                   },
                   leading: Icon(
                     Icons.location_on,

@@ -1,4 +1,5 @@
 import 'package:elsheikhzayedinfo/home_page.dart';
+import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/bookmark_screen.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +10,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<Widget> pages = [
     HomePage(),
     Categories(),
-    BookMarkScreen(),
+    BookMarkScreen(
+      bookMarkList: [
+        BookMarkItem("images/sh.jpg", "Nile Scan & Labs",
+            "يضم مركز النيل للأشعه و التحاليل نخبه من أساتذه و أعضاء هيئه التدريس بالقصر العينى و معهد الأورام ")
+      ],
+    ),
   ];
 
   int pageIndex = 0;
+
   void x(int index) {
     setState(() {
       pageIndex = index;
-      // pages[pageIndex];
     });
   }
 
@@ -28,7 +35,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: pageIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.deepOrange,
         onTap: x,
         items: [
           BottomNavigationBarItem(
@@ -40,7 +47,7 @@ class _HomeState extends State<Home> {
             label: "Categories",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
+            icon:  Icon(Icons.bookmark_border),
             label: "Book mark",
           )
         ],

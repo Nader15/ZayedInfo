@@ -15,9 +15,9 @@ class PlaceScreen extends StatefulWidget {
 class _PlaceScreenState extends State<PlaceScreen> {
   Widget _widget = Container();
   bool b = true;
+  bool isPressed = false;
 
   static const int c = 0xFFFF0000;
-
 
 // build massege , phone , ... buttons
   Widget buildOutlinedButton(IconData ic, VoidCallback? f) {
@@ -75,13 +75,17 @@ class _PlaceScreenState extends State<PlaceScreen> {
             style: TextStyle(color: Colors.black),
           ),
           leading: IconButton(
-           icon:Icon( Icons.arrow_back_ios),
-            onPressed: (){Navigator.of(context).pop();},
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             color: Colors.black,
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.bookmark_border),
+              icon: isPressed
+                  ? Icon(Icons.bookmark_border)
+                  : Icon(Icons.bookmark),
               color: Colors.black,
               onPressed: () {},
             ),
@@ -92,7 +96,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
             ),
           ],
         ),
-        backgroundColor: Color(0xffEFEFEF),
+       // backgroundColor: Color(0xffEFEFEF),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -239,7 +243,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     ),
                     Row(
                       children: [
-                        buildOutlinedButton(Icons.blur_circular_outlined,
+                        buildOutlinedButton(Icons.language,
                             () => launch('http://nilescanandlabs.net/')),
                         buildOutlinedButton(
                           Icons.phone,
@@ -255,8 +259,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                     ),
                     Text(
                       "Nile Scan & Labs",
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "82 m",
@@ -289,7 +293,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         Icons.location_on,
                         color: Colors.deepOrange,
                       ),
-                      width: MediaQuery.of(context).size.width/10,
+                      width: MediaQuery.of(context).size.width / 10,
                     ),
                     Expanded(
                       child: Container(

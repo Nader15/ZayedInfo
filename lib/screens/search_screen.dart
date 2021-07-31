@@ -43,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ],
     );
   }
+
 Widget sliderWidget(){
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,

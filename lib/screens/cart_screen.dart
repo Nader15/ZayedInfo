@@ -1,19 +1,19 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
+import 'package:elsheikhzayedinfo/screens/checkout_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
+  final List<CartItem> cartList;
 
-  final List <CartItem> cartList;
-  CartScreen({ Key ? key , required this.cartList});
+  CartScreen({Key? key, required this.cartList});
 
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   Widget whenCardPageEmpty() {
     return Container(
       decoration: BoxDecoration(
@@ -72,6 +72,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Text(
+                  //"${item.price}",
                   "21.0",
                   style: TextStyle(
                       fontSize: 20,
@@ -81,7 +82,10 @@ class _CartScreenState extends State<CartScreen> {
               ],
             )),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CheckOutScreen()));
+          },
           child: Container(
             padding: EdgeInsets.all(20),
             width: MediaQuery.of(context).size.width / 2,
@@ -106,76 +110,81 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget whenAddingToCart(CartItem cartItem , index) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 6,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(cartItem.imageName),
-                  )),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  width: MediaQuery.of(context).size.width / 4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        cartItem.productName,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        "Qty : ${cartItem.quantity}",
-                        style: TextStyle(
-                          fontSize: 20,
+  Widget whenAddingToCart(CartItem cartItem, index) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        padding: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 6,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage(cartItem.imageName),
+                    )),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width / 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          cartItem.productName,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w700),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "Qty : ${cartItem.quantity}",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width / 4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "${cartItem.price}",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.delete_outline,
+            Container(
+              padding: EdgeInsets.all(5),
+              width: MediaQuery.of(context).size.width / 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "${cartItem.price}",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      widget.cartList.removeAt(index);
-                    });
-                  },
-                  color: Colors.deepOrange,
-                  iconSize: 30,
-                )
-              ],
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete_outline,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        widget.cartList.removeAt(index);
+                      });
+                    },
+                    color: Colors.deepOrange,
+                    iconSize: 30,
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -189,11 +198,13 @@ class _CartScreenState extends State<CartScreen> {
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
           height: MediaQuery.of(context).size.height - 170,
-          child:widget.cartList.isEmpty? whenCardPageEmpty():
-          ListView.builder(
-            itemCount: widget.cartList.length,
-            itemBuilder: (BuildContext context, index) => whenAddingToCart(widget.cartList[index],index),
-          ),
+          child: widget.cartList.isEmpty
+              ? whenCardPageEmpty()
+              : ListView.builder(
+                  itemCount: widget.cartList.length,
+                  itemBuilder: (BuildContext context, index) =>
+                      whenAddingToCart(widget.cartList[index], index),
+                ),
         ),
         mainRow(),
       ]),

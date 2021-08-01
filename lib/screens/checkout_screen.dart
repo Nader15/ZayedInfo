@@ -13,6 +13,8 @@ class CheckOutScreen extends StatefulWidget {
 class _CheckOutScreenState extends State<CheckOutScreen> {
   Color deepOrange = Colors.deepOrange;
 
+  bool isPaymentPressed = false;
+
   Widget checkoutContainer() {
     return Container(
       child: Column(
@@ -52,7 +54,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height / 20,
           ),
-          Text("ORDER DETAILS"),
+          //Text("ORDER DETAILS"),
         ],
       ),
     );
@@ -62,6 +64,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     return Container(
       child: Column(
         children: [
+          Text("ORDER DETAILS"),
           TextFormField(
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
@@ -104,6 +107,76 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       ),
     );
   }
+
+  Widget confirmContainer() {
+    return Container(
+      // confirm container
+      padding: EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("ORDER DETAILS"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Phone",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text("data"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Delivery to",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text("data"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Full name",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text("data"),
+            ],
+          ),
+          Divider(
+            color: Colors.grey,
+            thickness: 3,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 25,
+          ),
+          Text(
+            "PRODUCT ORDER",
+            style: TextStyle(fontSize: 20),
+          ),
+          whenAddingToCheckOrder(),
+          Divider(
+            color: Colors.grey,
+            thickness: 3,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "ORDER TOTAL",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text("data"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
 
   Widget whenAddingToCheckOrder() {
     return Container(
@@ -163,6 +236,100 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         ],
       ),
     );
+  }  // using inside confirmContainer
+
+
+  Widget paymentContainer() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          isPaymentPressed = !isPaymentPressed;
+        });
+      },
+      child: Stack(
+        alignment: AlignmentDirectional.topEnd,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 5,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: isPaymentPressed ? Colors.deepPurple : Colors.grey,
+                width: 3,
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width / 4,
+                  child: Image.asset("images/cash.jpg"),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Cash on Delivery",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text("Pay when you receive your item(s)"),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 50,
+            width: 50,
+            child: Icon(
+              Icons.check_circle_outline,
+              color: isPaymentPressed ? Colors.deepPurple : Colors.grey,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget totalPriceContainer()
+  {
+    return Container(
+      height: MediaQuery.of(context).size.height / 5,
+      padding: EdgeInsets.all(20),
+      child: isPaymentPressed
+          ? Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            mainAxisAlignment:
+            MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Subtotal"),
+              Text("500.0"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text("0.0")],
+          ),
+          Row(
+            mainAxisAlignment:
+            MainAxisAlignment.spaceBetween,
+            children: [
+              Text("TOTAL"),
+              Text("500.0"),
+            ],
+          ),
+        ],
+      )
+          : null,
+    );
   }
 
   @override
@@ -182,11 +349,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           color: deepOrange,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height / 1.1,
+      body: Container(
+        height: MediaQuery.of(context).size.height / 1.1,
+        child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 padding: EdgeInsets.all(20),
@@ -194,68 +361,15 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     checkoutContainer(),
-                    // detailsContainer(),
-                    Container(
-                      // confirm container
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Phone",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              Text("data"),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Delivery to",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              Text("data"),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Full name",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              Text("data"),
-                            ],
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 3,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 25,
-                          ),
-                          Text("PRODUCT ORDER"),
-                          whenAddingToCheckOrder(),
-                          // SingleChildScrollView(
-                          //   child: Container(
-                          //       child: ListView.builder(
-                          //     itemBuilder: (BuildContext context, index) =>
-                          //         whenAddingToCheckOrder(),
-                          //   )),
-                          // ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 3,
-                          ),
-                        ],
-                      ),
-                    ),
+                    detailsContainer(),
+                   // confirmContainer()
+
                   ],
                 ),
+              ),
+              Container(
+                color: deepOrange,
+                height: MediaQuery.of(context).size.height/16,
               ),
             ],
           ),

@@ -30,10 +30,8 @@ class _InboxState extends State<Inbox> {
                 alignment: Alignment.topCenter,
                 height: MediaQuery.of(context).size.height - 130,
                 child: ListView.builder(
-//                    shrinkWrap: true,
-//                    physics: ScrollPhysics(),
                     itemCount: 10,
-                    itemBuilder: (context, indeex) {
+                    itemBuilder: (context, index) {
                       return InkWell(
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MessageScreen()));
@@ -68,14 +66,4 @@ class _InboxState extends State<Inbox> {
   }
 }
 
-//Container(
-//            height: MediaQuery.of(context).size.height / 2,
-//            child: Column(
-//              //mainAxisAlignment: MainAxisAlignment.end,
-//              children: [
-//                TextFormField(
-//                  decoration: InputDecoration(hintText: "Send a message"),
-//                ),
-//              ],
-//            ),
-//          ),
+

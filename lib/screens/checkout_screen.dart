@@ -1,3 +1,5 @@
+import 'package:elsheikhzayedinfo/models/cart_item.dart';
+import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +14,10 @@ class CheckOutScreen extends StatefulWidget {
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
   Color deepOrange = Colors.deepOrange;
-
+  int initialStep = 0;
   bool isPaymentPressed = false;
+
+  final List<CartItem> cartList = [];
 
   Widget checkoutContainer() {
     return Container(
@@ -21,7 +25,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StepsIndicator(
-            selectedStep: 1,
+            selectedStep: initialStep,
             nbSteps: 3,
             isHorizontal: true,
             selectedStepBorderSize: 25,
@@ -110,76 +114,88 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
   Widget confirmContainer() {
     return Container(
+      height: MediaQuery.of(context).size.height / 1.7,
       // confirm container
       padding: EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("ORDER DETAILS"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Phone",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text("data"),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Delivery to",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text("data"),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Full name",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text("data"),
-            ],
-          ),
-          Divider(
-            color: Colors.grey,
-            thickness: 3,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 25,
-          ),
-          Text(
-            "PRODUCT ORDER",
-            style: TextStyle(fontSize: 20),
-          ),
-          whenAddingToCheckOrder(),
-          Divider(
-            color: Colors.grey,
-            thickness: 3,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "ORDER TOTAL",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text("data"),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("ORDER DETAILS"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Phone",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text("data"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Delivery to",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text("data"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Full name",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text("data"),
+              ],
+            ),
+            Divider(
+              color: Colors.grey,
+              thickness: 3,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 25,
+            ),
+            Text(
+              "PRODUCT ORDER",
+              style: TextStyle(fontSize: 20),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 6.5,
+              //  padding: EdgeInsets.all(10),
+              child: // whenAddingToCheckOrder(),
+                  ListView.builder(
+                      padding: const EdgeInsets.all(10),
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, index) =>
+                          whenAddingToCheckOrder()),
+            ),
+            Divider(
+              color: Colors.grey,
+              thickness: 3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "ORDER TOTAL",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text("data"),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
-
   Widget whenAddingToCheckOrder() {
     return Container(
+      margin: EdgeInsets.only(bottom: 10),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 10,
       child: Row(
@@ -236,100 +252,223 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         ],
       ),
     );
-  }  // using inside confirmContainer
-
+  } // using inside confirmContainer
 
   Widget paymentContainer() {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          isPaymentPressed = !isPaymentPressed;
-        });
-      },
-      child: Stack(
-        alignment: AlignmentDirectional.topEnd,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 5,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: isPaymentPressed ? Colors.deepPurple : Colors.grey,
-                width: 3,
-              ),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 4,
-                  child: Image.asset("images/cash.jpg"),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(15),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Cash on Delivery",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        Text("Pay when you receive your item(s)"),
-                      ],
-                    ),
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              isPaymentPressed = !isPaymentPressed;
+            });
+          },
+          child: Stack(
+            alignment: AlignmentDirectional.topEnd,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 5,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: isPaymentPressed
+                        ? Color(0xff306030)
+                        : Color(0xff78866b),
+                    width: 3,
                   ),
                 ),
-              ],
-            ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 4,
+                      child: Image.asset("images/cash.jpg"),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Cash on Delivery",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text("Pay when you receive your item(s)"),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child: isPaymentPressed
+                    ? Icon(
+                        Icons.check_circle,
+                        color: Color(0xff306030),
+                      )
+                    : Icon(Icons.check_circle_outline),
+              ),
+            ],
           ),
-          Container(
-            height: 50,
-            width: 50,
-            child: Icon(
-              Icons.check_circle_outline,
-              color: isPaymentPressed ? Colors.deepPurple : Colors.grey,
-            ),
-          )
-        ],
-      ),
+        ),
+        totalPriceContainer(),
+      ],
     );
   }
 
-  Widget totalPriceContainer()
-  {
+  Widget totalPriceContainer() {
     return Container(
       height: MediaQuery.of(context).size.height / 5,
       padding: EdgeInsets.all(20),
       child: isPaymentPressed
           ? Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Subtotal"),
-              Text("500.0"),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [Text("0.0")],
-          ),
-          Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
-            children: [
-              Text("TOTAL"),
-              Text("500.0"),
-            ],
-          ),
-        ],
-      )
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Subtotal"),
+                    Text("500.0"),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text("0.0")],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("TOTAL"),
+                    Text("500.0"),
+                  ],
+                ),
+              ],
+            )
           : null,
     );
+  }
+
+  Widget successContainer() {
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      child: Center(
+        child: Column(
+          children: [
+            Icon(
+              Icons.check_circle,
+              color: Color(0xff306030),
+              size: 180,
+            ),
+            Text(
+              "Your order has been sent successfully!",
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget nextButton() {
+    return Container(
+      child: Row(
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
+              ),
+              height: MediaQuery.of(context).size.height / 12,
+              width: MediaQuery.of(context).size.width / 6,
+              child: Icon(Icons.arrow_back_ios),
+            ),
+          ),
+          Expanded(
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  initialStep++;
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: deepOrange,
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(10)),
+                ),
+                height: MediaQuery.of(context).size.height / 12,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      initialStep == 2 ? "Confirm Payment" : "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget doneButton() {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => CartScreen(cartList: cartList)));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 12,
+        color: Color(0xff306030),
+        child: Center(
+          child: Text(
+            "Done",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+
+  paymentSteps(int i) {
+    if (initialStep == 0) {
+      return detailsContainer();
+    } else if (initialStep == 1) {
+      return confirmContainer();
+    } else if (initialStep == 2) {
+      return paymentContainer();
+    } else {
+      return successContainer();
+    }
+  }
+
+  buttonManage(int i) {
+    if (initialStep == 0 || initialStep == 1 || initialStep == 2) {
+      return nextButton();
+    } else if (initialStep == 3) {
+      return doneButton();
+    }
   }
 
   @override
@@ -350,27 +489,22 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         ),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height / 1.1,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
+                height: MediaQuery.of(context).size.height / 1.25,
                 padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     checkoutContainer(),
-                    detailsContainer(),
-                   // confirmContainer()
-
+                     paymentSteps(initialStep),
                   ],
                 ),
               ),
-              Container(
-                color: deepOrange,
-                height: MediaQuery.of(context).size.height/16,
-              ),
+              buttonManage(initialStep),
             ],
           ),
         ),

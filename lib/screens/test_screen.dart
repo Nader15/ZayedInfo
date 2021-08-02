@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
@@ -12,14 +13,14 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  bool isOrderasBeenPressed = false;
+  bool isOrderHasBeenPressed = false;
   int count = 1;
 
   double price = 21.0;
+  //double totalPrice = 21.0;
+
   double increasement = 21.0;
 
-   // late CartItem item ;
-  // List <CartItem> cartList= [];
 
   Widget orderContainer() {
     return Container(
@@ -74,7 +75,9 @@ class _TestScreenState extends State<TestScreen> {
                             setState(() {
                               if (count > 1) {
                                 count--;
+                                itemsCount = count;
                                 price = price - increasement;
+                                totalPrice = price;
                               } else {}
                             });
                           },
@@ -88,7 +91,9 @@ class _TestScreenState extends State<TestScreen> {
                           onPressed: () {
                             setState(() {
                               count++;
+                              itemsCount = count;
                               price = price + increasement;
+                              totalPrice = price;
                             });
                           },
                           icon: Icon(Icons.add),
@@ -113,13 +118,17 @@ class _TestScreenState extends State<TestScreen> {
               ),
               InkWell(
                 onTap: () {
-                 setState(() {
-                   // for( var i = 0 ; i < cartList.length; i++ ) {
-                   //   cartList.add(item);
-                   // }
-                   Navigator.of(context).push(MaterialPageRoute(
-                       builder: (context) => CartScreen(cartList: [CartItem("images/sh.jpg","Test", count,price)],)));
-                 });
+                  setState(() {
+                    // for( var i = 0 ; i < cartList.length; i++ ) {
+                    //   cartList.add(item);
+                    // }
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => CartScreen(
+                              cartList: [
+                                CartItem("images/sh.jpg", "Test", itemsCount, price)
+                              ],
+                            )));
+                  });
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -171,7 +180,7 @@ class _TestScreenState extends State<TestScreen> {
         InkWell(
           onTap: () {
             setState(() {
-              isOrderasBeenPressed = !isOrderasBeenPressed;
+              isOrderHasBeenPressed = !isOrderHasBeenPressed;
             });
           },
           child: Container(
@@ -227,7 +236,7 @@ class _TestScreenState extends State<TestScreen> {
       body: InkWell(
         onTap: () {
           setState(() {
-            isOrderasBeenPressed = false;
+            isOrderHasBeenPressed = false;
           });
         },
         child: Column(
@@ -315,7 +324,7 @@ class _TestScreenState extends State<TestScreen> {
             ]),
             Container(
                 child: //orderContainer(),
-                    isOrderasBeenPressed ? orderContainer() : mainRow()),
+                    isOrderHasBeenPressed ? orderContainer() : mainRow()),
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class _EditProfileState extends State<EditProfile> {
   File? _image;
   final picker = ImagePicker();
 
-  Future getimage(ImageSource scr) async {
+  Future getImage(ImageSource scr) async {
     final _pickedFile = await picker.getImage(source: scr);
     setState(() {
       if (_pickedFile != null) {
@@ -44,7 +44,7 @@ class _EditProfileState extends State<EditProfile> {
                   child: IconButton(
                     color: Colors.white,
                     onPressed: () {
-                      getimage(ImageSource.gallery);
+                      getImage(ImageSource.gallery);
                       Navigator.of(context).pop();
                     },
                     icon: Icon(

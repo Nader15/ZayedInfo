@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
@@ -13,6 +14,10 @@ class CheckOutScreen extends StatefulWidget {
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
+ final nameController =TextEditingController();
+ final phoneController = TextEditingController();
+ final addressController = TextEditingController();
+
   Color deepOrange = Colors.deepOrange;
   int initialStep = 0;
   bool isPaymentPressed = false;
@@ -58,7 +63,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height / 20,
           ),
-          //Text("ORDER DETAILS"),
         ],
       ),
     );
@@ -69,35 +73,44 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       child: Column(
         children: [
           Text("ORDER DETAILS"),
-          TextFormField(
-            keyboardType: TextInputType.name,
-            decoration: InputDecoration(
-                hintText: "Full name*",
-                focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: deepOrange))),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-                hintText: "phone*",
-                focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: deepOrange))),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.streetAddress,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                icon: Icon(Icons.my_location_rounded),
-                color: deepOrange,
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MapScreen()));
-                },
-              ),
-              hintText: "Delivery to*",
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: deepOrange),
-              ),
+          Form(
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: nameController,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                      hintText: "Full name*",
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: deepOrange))),
+                ),
+                TextFormField(
+                  controller: phoneController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                      hintText: "phone*",
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: deepOrange))),
+                ),
+                TextFormField(
+                  controller: addressController,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.my_location_rounded),
+                      color: deepOrange,
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MapScreen()));
+                      },
+                    ),
+                    hintText: "Delivery to*",
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: deepOrange),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -129,7 +142,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   "Phone",
                   style: TextStyle(fontSize: 20),
                 ),
-                Text("data"),
+                Text(phoneController.text),
               ],
             ),
             Row(
@@ -139,7 +152,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   "Delivery to",
                   style: TextStyle(fontSize: 20),
                 ),
-                Text("data"),
+                Text(addressController.text),
               ],
             ),
             Row(
@@ -149,7 +162,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   "Full name",
                   style: TextStyle(fontSize: 20),
                 ),
-                Text("data"),
+                Text(nameController.text),
               ],
             ),
             Divider(
@@ -165,13 +178,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             ),
             Container(
               height: MediaQuery.of(context).size.height / 6.5,
-              //  padding: EdgeInsets.all(10),
-              child: // whenAddingToCheckOrder(),
-                  ListView.builder(
-                      padding: const EdgeInsets.all(10),
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, index) =>
-                          whenAddingToCheckOrder()),
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(10),
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, index) =>
+                      whenAddingToCheckOrder()),
             ),
             Divider(
               color: Colors.grey,
@@ -184,7 +195,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   "ORDER TOTAL",
                   style: TextStyle(fontSize: 20),
                 ),
-                Text("data"),
+                Text("$totalPrice"),
               ],
             ),
           ],
@@ -225,7 +236,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        "Qty : 1",
+                        "Qty : $itemsCount",
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -243,7 +254,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "21.0",
+                  "$totalPrice",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -333,7 +344,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Subtotal"),
-                    Text("500.0"),
+                    Text("$totalPrice"),
                   ],
                 ),
                 Row(
@@ -344,7 +355,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("TOTAL"),
-                    Text("500.0"),
+                    Text("$totalPrice"),
                   ],
                 ),
               ],
@@ -500,7 +511,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     checkoutContainer(),
-                     paymentSteps(initialStep),
+                    paymentSteps(initialStep),
                   ],
                 ),
               ),

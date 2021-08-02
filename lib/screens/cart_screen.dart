@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/checkout_screen.dart';
@@ -7,13 +8,15 @@ import 'package:flutter/material.dart';
 class CartScreen extends StatefulWidget {
   final List<CartItem> cartList;
 
-  CartScreen({Key? key, required this.cartList});
+  CartScreen({Key? key, required this.cartList });
 
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+
   Widget whenCardPageEmpty() {
     return Container(
       decoration: BoxDecoration(
@@ -56,7 +59,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget mainRow() {
+  Widget mainRow( ) {
     return Row(
       children: [
         Container(
@@ -72,8 +75,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Text(
-                  //"${item.price}",
-                  "21.0",
+                  "$totalPrice",
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.red,
@@ -131,7 +133,7 @@ class _CartScreenState extends State<CartScreen> {
                         image: DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage(cartItem.imageName),
-                    )),
+                    ),),
                   ),
                   Container(
                     padding: EdgeInsets.all(10),
@@ -207,7 +209,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
         ),
         mainRow(),
-      ]),
+      ],),
     );
   }
 }

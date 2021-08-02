@@ -11,6 +11,7 @@ import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/info_screen.dart';
+import 'package:elsheikhzayedinfo/screens/login_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: CheckOutScreen(),
+      home: LoginScreen(),
     );
   }
 }

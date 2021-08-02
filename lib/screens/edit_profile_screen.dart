@@ -106,7 +106,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.orange),
+                          MaterialStateProperty.all<Color>(Color(0xffff4500)),
                     ),
                   ),
                 ),

@@ -14,10 +14,11 @@ class CheckOutScreen extends StatefulWidget {
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
- final nameController =TextEditingController();
- final phoneController = TextEditingController();
- final addressController = TextEditingController();
-
+  final GlobalKey <FormState> _formKey = GlobalKey();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressController = TextEditingController();
+String Name = "";
   Color deepOrange = Colors.deepOrange;
   int initialStep = 0;
   bool isPaymentPressed = false;
@@ -61,7 +62,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             ],
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 20,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 20,
           ),
         ],
       ),
@@ -74,11 +78,20 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         children: [
           Text("ORDER DETAILS"),
           Form(
+            key:_formKey,
             child: Column(
               children: [
                 TextFormField(
                   controller: nameController,
                   keyboardType: TextInputType.name,
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return " enter your name ";
+                    }
+                  },
+                  onSaved:(val) {
+                    Name = val!;
+                  },
                   decoration: InputDecoration(
                       hintText: "Full name*",
                       focusedBorder: UnderlineInputBorder(
@@ -114,7 +127,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 20,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -127,7 +143,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
   Widget confirmContainer() {
     return Container(
-      height: MediaQuery.of(context).size.height / 1.7,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height / 1.7,
       // confirm container
       padding: EdgeInsets.all(10),
       child: SingleChildScrollView(
@@ -170,14 +189,20 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               thickness: 3,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 25,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 25,
             ),
             Text(
               "PRODUCT ORDER",
               style: TextStyle(fontSize: 20),
             ),
             Container(
-              height: MediaQuery.of(context).size.height / 6.5,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 6.5,
               child: ListView.builder(
                   padding: const EdgeInsets.all(10),
                   itemCount: 3,
@@ -207,8 +232,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget whenAddingToCheckOrder() {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 10,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height / 10,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -216,16 +247,22 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: Row(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width / 4,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width / 4,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage("images/sh.jpg"),
-                  )),
+                        fit: BoxFit.fill,
+                        image: AssetImage("images/sh.jpg"),
+                      )),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  width: MediaQuery.of(context).size.width / 4,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width / 4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -248,7 +285,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 4,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width / 4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -278,7 +318,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             alignment: AlignmentDirectional.topEnd,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height / 5,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height / 5,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -292,7 +335,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 4,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width / 4,
                       child: Image.asset("images/cash.jpg"),
                     ),
                     Expanded(
@@ -319,9 +365,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 width: 50,
                 child: isPaymentPressed
                     ? Icon(
-                        Icons.check_circle,
-                        color: Color(0xff306030),
-                      )
+                  Icons.check_circle,
+                  color: Color(0xff306030),
+                )
                     : Icon(Icons.check_circle_outline),
               ),
             ],
@@ -334,32 +380,35 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
   Widget totalPriceContainer() {
     return Container(
-      height: MediaQuery.of(context).size.height / 5,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height / 5,
       padding: EdgeInsets.all(20),
       child: isPaymentPressed
           ? Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Subtotal"),
-                    Text("$totalPrice"),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text("0.0")],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("TOTAL"),
-                    Text("$totalPrice"),
-                  ],
-                ),
-              ],
-            )
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Subtotal"),
+              Text("$totalPrice"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text("0.0")],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("TOTAL"),
+              Text("$totalPrice"),
+            ],
+          ),
+        ],
+      )
           : null,
     );
   }
@@ -398,8 +447,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 color: Colors.grey,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
               ),
-              height: MediaQuery.of(context).size.height / 12,
-              width: MediaQuery.of(context).size.width / 6,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 12,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 6,
               child: Icon(Icons.arrow_back_ios),
             ),
           ),
@@ -407,6 +462,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: InkWell(
               onTap: () {
                 setState(() {
+                  _submit();
                   initialStep++;
                 });
               },
@@ -414,9 +470,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 decoration: BoxDecoration(
                   color: deepOrange,
                   borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(10)),
+                  BorderRadius.only(topRight: Radius.circular(10)),
                 ),
-                height: MediaQuery.of(context).size.height / 12,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height / 12,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -449,8 +508,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             builder: (context) => CartScreen(cartList: cartList)));
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 12,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height / 12,
         color: Color(0xff306030),
         child: Center(
           child: Text(
@@ -481,6 +546,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       return doneButton();
     }
   }
+  void _submit(){
+    if(  _formKey.currentState!.validate()){return;}
+    _formKey.currentState!.save();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -505,7 +574,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height / 1.25,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height / 1.25,
                 padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

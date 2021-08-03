@@ -166,7 +166,7 @@ class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
       ),
       body: ListView.builder(
         itemCount: 3,
-        itemBuilder: (context, index) => buildPlaceCard('images/elnil.png', 30,
+        itemBuilder: (context, index) => buildPlaceCard('images/elNil.png', 30,
             "Nile Scan 7 Labs", "الشيخ زايد السادس من اكتوبر", () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => PlaceScreen()));

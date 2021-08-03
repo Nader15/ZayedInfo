@@ -35,7 +35,7 @@ class _BusinessManagementState extends State<BusinessManagement> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.cancel_outlined),
+          icon: Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
           },

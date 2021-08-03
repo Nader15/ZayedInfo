@@ -201,7 +201,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         itemCount: 4,
                         itemBuilder: (context, index) => (Container(
                           margin: EdgeInsets.only(right: 10),
-                          child: Image.asset('images/elnil.png'),
+                          child: Image.asset('images/elNil.png'),
                         )),
                       );
                     });

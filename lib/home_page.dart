@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => shopsNearbyContainer(
-                        'images/elnil.png',
+                        'images/elNil.png',
                         31,
                         "Nile Scan & Labs",
                         "الشيخ زايد السادس من أكتوبر", () {

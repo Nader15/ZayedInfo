@@ -1,10 +1,16 @@
+import 'dart:io';
+import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/business_locator_screen.dart';
 import 'package:elsheikhzayedinfo/screens/business_management_screen.dart';
+import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/info_screen.dart';
+import 'package:elsheikhzayedinfo/screens/login_screen.dart';
 import 'package:elsheikhzayedinfo/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
 // Drawer
 class MyDrawer extends StatefulWidget {
   @override
@@ -13,62 +19,81 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   int _radioGroupValue = 0;
+  final List<CartItem> cartList = [];
 
-  // late Locale _locale;
-  //
-  // changeLanguage(Locale locale) {
-  //   setState(() {
-  //     _locale = locale;
-  //   });
-  // }
+  File? _image;
+  final picker = ImagePicker();
 
-
+  Future getImage(ImageSource scr) async {
+    final _pickedFile = await picker.getImage(source: scr);
+    setState(() {
+      if (_pickedFile != null) {
+        _image = File(_pickedFile.path);
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.cyan),
+            decoration: BoxDecoration(color: Color(0xffff4f00)),
             child: ListTile(
-                title: Icon(
-                  Icons.account_circle,
-                  size: 100,
+              title: CircleAvatar(
+                backgroundColor: Color(0xff989898),
+                maxRadius: 50,
+                child: IconButton(
+                  icon: Icon(Icons.account_circle),
+                  color: Color(0xff848482),
+                  onPressed: () {
+                    getImage(ImageSource.gallery);
+                    Navigator.of(context).pop();
+                  },
+                  iconSize: 85,
                 ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        child: Text(
-                          "Log in",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        onTap: () {},
-                      ),
-                      Text(
-                        "  /  ",
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    InkWell(
+                      child: Text(
+                        "Log in",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                         ),
                       ),
-                      InkWell(
-                        child: Text(
-                          "Creat Account",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
+                      },
+                    ),
+                    Text(
+                      "  /  ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
-                    ],
-                  ),
-                )),
+                    ),
+                    InkWell(
+                      child: Text(
+                        "Create Account",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EditProfile()));
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           ListTile(
             title: Text("Home"),
@@ -87,7 +112,10 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             title: Text("Orders"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CartScreen(cartList: cartList)));
+            },
             leading: Icon(Icons.shopping_cart),
           ),
           ListTile(
@@ -150,11 +178,11 @@ class _MyDrawerState extends State<MyDrawer> {
                           leading: Radio(
                             value: 2,
                             groupValue: _radioGroupValue,
-                            onChanged: (value){
+                            onChanged: (value) {
                               setState(() {
                                 // _radioGroupValue= value;
                               });
-                            },//EasyLocalization.of(context)!.locale=('ar','en'),
+                            }, //EasyLocalization.of(context)!.locale=('ar','en'),
                           ),
                         ),
                         ListTile(

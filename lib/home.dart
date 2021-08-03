@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
     Categories(),
     BookMarkScreen(
       bookMarkList: [
-        BookMarkItem("images/sh.jpg", "Nile Scan & Labs",
+        BookMarkItem("images/elNil.jpg", "Nile Scan & Labs",
             "يضم مركز النيل للأشعه و التحاليل نخبه من أساتذه و أعضاء هيئه التدريس بالقصر العينى و معهد الأورام ")
       ],
     ),

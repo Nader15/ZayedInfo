@@ -1,9 +1,12 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'google_map.dart';
+import 'package:share/share.dart';
+
 
 class PlaceScreen extends StatefulWidget {
   const PlaceScreen({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
 
   static const int c = 0xFFFF0000;
 
-// build massege , phone , ... buttons
+// build message , phone , ... buttons
   Widget buildOutlinedButton(IconData ic, VoidCallback? f) {
     return Expanded(
       child: Container(
@@ -40,8 +43,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
     );
   }
 
-// build product , reviews , gallary buttons
-  Widget buildcontainer(String label, VoidCallback? f) {
+// build product , reviews , gallery buttons
+  Widget buildContainer(String label, VoidCallback? f) {
     return Expanded(
       child: InkWell(
         onTap: f,
@@ -92,11 +95,13 @@ class _PlaceScreenState extends State<PlaceScreen> {
             IconButton(
               icon: Icon(Icons.share),
               color: Colors.black,
-              onPressed: () {},
+              onPressed: () {
+                Share.share("https://elshikhzayed.info/index.php/user/login");
+              },
             ),
           ],
         ),
-       // backgroundColor: Color(0xffEFEFEF),
+        backgroundColor: Color(0xffEFEFEF),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -106,7 +111,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage('images/elnil.png'),
+                    image: AssetImage('images/elNil.png'),
                   ),
                 ),
               ),
@@ -146,7 +151,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildcontainer("PRODUCT ", () {
+                    buildContainer("PRODUCT ", () {
                       setState(() {
                         b = true;
                         _widget = Text(
@@ -155,7 +160,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         );
                       });
                     }),
-                    buildcontainer("REVIEWS", () {
+                    buildContainer("REVIEWS", () {
                       setState(() {
                         b = true;
                         _widget = Expanded(
@@ -195,7 +200,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         );
                       });
                     }),
-                    buildcontainer("GALLERY", () {
+                    buildContainer("GALLERY", () {
                       setState(() {
                         b = true;
                         _widget = ListView.builder(
@@ -203,7 +208,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                           itemCount: 4,
                           itemBuilder: (context, index) => (Container(
                             margin: EdgeInsets.only(right: 10),
-                            child: Image.asset('images/elnil.png'),
+                            child: Image.asset('images/elNil.png'),
                           )),
                         );
                       });
@@ -236,7 +241,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         }),
                         buildOutlinedButton(Icons.directions, () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MapScreen(),
+                            builder: (context) => DirectionsScreen(),
                           ));
                         }),
                       ],

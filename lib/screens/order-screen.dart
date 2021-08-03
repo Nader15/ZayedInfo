@@ -17,7 +17,7 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget _widget = Container();
   bool _bool = true;
 
-  Widget buildcontainer(String label, VoidCallback? f) {
+  Widget buildContainer(String label, VoidCallback? f) {
     return Expanded(
       child: InkWell(
         onTap: f,
@@ -145,7 +145,7 @@ class _OrderScreenState extends State<OrderScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildcontainer("PRODUCT ", () {
+                  buildContainer("PRODUCT ", () {
                     setState(() {
                       _bool = true;
                       _widget = Text(
@@ -154,7 +154,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       );
                     });
                   }),
-                  buildcontainer("REVIEWS", () {
+                  buildContainer("REVIEWS", () {
                     setState(() {
                       _bool = true;
                       _widget = Expanded(
@@ -193,7 +193,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       );
                     });
                   }),
-                  buildcontainer("GALLERY", () {
+                  buildContainer("GALLERY", () {
                     setState(() {
                       _bool = true;
                       _widget = ListView.builder(

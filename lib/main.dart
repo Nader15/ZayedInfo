@@ -8,7 +8,7 @@ import 'package:elsheikhzayedinfo/screens/checkout_screen.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/edit_profile_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
-import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
+import 'package:elsheikhzayedinfo/screens/food_type.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/info_screen.dart';
 import 'package:elsheikhzayedinfo/screens/login_screen.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CheckOutScreen(),
+      home: TestScreen(),
     );
   }
 }

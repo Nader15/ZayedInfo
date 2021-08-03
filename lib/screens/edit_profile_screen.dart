@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
 class EditProfile extends StatefulWidget {
   @override

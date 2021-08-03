@@ -1,35 +1,8 @@
-import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
-import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 
-// Screens AppBar
 
-AppBar BuildScreensAppBar(@required String pageTitle) {
-  return AppBar(
-    leading: Builder(
-      builder: (context) => IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-    ),
-    backgroundColor: Colors.white,
-    title: Text(
-      pageTitle,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  );
-}
 
 class MySlider extends StatefulWidget {
   @override

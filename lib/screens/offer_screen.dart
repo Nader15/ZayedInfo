@@ -1,7 +1,8 @@
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_timer/custom_timer.dart';
-
+import 'package:share/share.dart';
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({Key? key}) : super(key: key);
@@ -11,36 +12,17 @@ class OffersScreen extends StatefulWidget {
 }
 
 class _OffersScreenState extends State<OffersScreen> {
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
- int offerDuration = 1 ;
+  int offerDuration = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "Mohammed",
-          style: TextStyle(color: Colors.black),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          color: Colors.black,
-        ),
-        actions: [
-          Icon(
-            Icons.share,
-            color: Colors.black,
-          ),
-        ],
-      ),
+      appBar: appBarWithOneIcons("Mohammed", Icon(Icons.share), () {
+        Share.share("https://elshikhzayed.info/index.php/user/login");
+      }),
       body:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(children: [
@@ -99,7 +81,9 @@ class _OffersScreenState extends State<OffersScreen> {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 CustomTimer(
                   from: Duration(days: offerDuration),
                   to: Duration(days: 0),
@@ -107,7 +91,7 @@ class _OffersScreenState extends State<OffersScreen> {
                   builder: (CustomTimerRemainingTime remaining) {
                     return Text(
                       "${remaining.days}:${remaining.hours}:${remaining.minutes}",
-                      style: TextStyle(fontSize: 25.0,color: Colors.white),
+                      style: TextStyle(fontSize: 25.0, color: Colors.white),
                     );
                   },
                 ),
@@ -123,15 +107,20 @@ class _OffersScreenState extends State<OffersScreen> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
-            //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Mohammed",
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(height: 5,),
-                Text("ss",style: TextStyle(fontSize: 20),),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "ss",
+                  style: TextStyle(fontSize: 20),
+                ),
               ],
             ),
           ),
@@ -143,7 +132,10 @@ class _OffersScreenState extends State<OffersScreen> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: ListTile(
-              onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceScreen()));},
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PlaceScreen()));
+              },
               leading: Icon(
                 Icons.location_on,
                 color: Colors.deepOrange,

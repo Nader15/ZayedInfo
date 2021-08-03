@@ -1,6 +1,7 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

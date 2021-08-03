@@ -14,11 +14,13 @@ class CheckOutScreen extends StatefulWidget {
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
+
+
   final GlobalKey <FormState> _formKey = GlobalKey();
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
-String Name = "";
+  String Name = "";
   Color deepOrange = Colors.deepOrange;
   int initialStep = 0;
   bool isPaymentPressed = false;

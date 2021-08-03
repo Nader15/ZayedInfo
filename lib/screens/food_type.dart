@@ -2,6 +2,7 @@ import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
 class Gril extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _GrilState extends State<Gril> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              "Resturant",
+                              "Restaurant",
                               style: _s,
                             ),
                           ),

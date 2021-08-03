@@ -2,8 +2,10 @@ import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({Key? key}) : super(key: key);
@@ -17,10 +19,10 @@ class _TestScreenState extends State<TestScreen> {
   int count = 1;
 
   double price = 21.0;
+
   //double totalPrice = 21.0;
 
   double increasement = 21.0;
-
 
   Widget orderContainer() {
     return Container(
@@ -125,7 +127,8 @@ class _TestScreenState extends State<TestScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => CartScreen(
                               cartList: [
-                                CartItem("images/sh.jpg", "Test", itemsCount, price)
+                                CartItem(
+                                    "images/sh.jpg", "Test", itemsCount, price)
                               ],
                             )));
                   });
@@ -211,28 +214,9 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "test",
-          style: TextStyle(color: Colors.black),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          color: Colors.black,
-        ),
-        actions: [
-          Icon(
-            Icons.share,
-            color: Colors.black,
-          ),
-        ],
-      ),
+      appBar: appBarWithOneIcons("test", Icon(Icons.share), () {
+        Share.share("https://elshikhzayed.info/index.php/user/login");
+      }),
       body: InkWell(
         onTap: () {
           setState(() {

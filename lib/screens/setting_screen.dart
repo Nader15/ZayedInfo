@@ -1,5 +1,6 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
 class SettingScreen extends StatefulWidget {
   @override

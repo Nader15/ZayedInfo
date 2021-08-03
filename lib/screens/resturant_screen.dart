@@ -1,6 +1,7 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
-import 'package:elsheikhzayedinfo/screens/gril_screen.dart';
+import 'package:elsheikhzayedinfo/screens/food_type.dart';
 import 'package:flutter/material.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
 class Restaurant extends StatefulWidget {
   @override

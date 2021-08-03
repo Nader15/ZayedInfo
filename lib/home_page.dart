@@ -1,4 +1,4 @@
-import 'package:elsheikhzayedinfo/component/home_widgets.dart';
+import 'package:elsheikhzayedinfo/ui/home_widgets.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
 import 'package:elsheikhzayedinfo/screens/offer_screen.dart';

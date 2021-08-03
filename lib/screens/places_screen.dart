@@ -1,12 +1,12 @@
 import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'google_map.dart';
 import 'package:share/share.dart';
-
 
 class PlaceScreen extends StatefulWidget {
   const PlaceScreen({Key? key}) : super(key: key);
@@ -71,36 +71,14 @@ class _PlaceScreenState extends State<PlaceScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
+        appBar: appBarWithTwoIcons(
             "Nile Scan & Labs",
-            style: TextStyle(color: Colors.black),
-          ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            color: Colors.black,
-          ),
-          actions: [
-            IconButton(
-              icon: isPressed
-                  ? Icon(Icons.bookmark_border)
-                  : Icon(Icons.bookmark),
-              color: Colors.black,
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.share),
-              color: Colors.black,
-              onPressed: () {
-                Share.share("https://elshikhzayed.info/index.php/user/login");
-              },
-            ),
-          ],
-        ),
+            isPressed ? Icon(Icons.bookmark_border) : Icon(Icons.bookmark),
+            () {},
+            Icon(Icons.share), () {
+          Share.share("https://elshikhzayed.info/index.php/user/login");
+        }),
+
         backgroundColor: Color(0xffEFEFEF),
         body: SingleChildScrollView(
           child: Column(

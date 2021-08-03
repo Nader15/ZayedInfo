@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 AppBar BuildScreensAppBar(@required String pageTitle) {
@@ -28,7 +27,12 @@ AppBar BuildScreensAppBar(@required String pageTitle) {
 
 // AppBar with two icons in action
 
-AppBar appBarWithTwoIcons(){
+AppBar appBarWithTwoIcons(
+    String screenName,
+    Icon firstIconName,
+    VoidCallback? firstIconNavigator,
+    Icon secondIconName,
+    VoidCallback? secondIconNavigator) {
   return AppBar(
     leading: Builder(
       builder: (context) => IconButton(
@@ -43,64 +47,49 @@ AppBar appBarWithTwoIcons(){
     ),
     backgroundColor: Colors.white,
     title: Text(
-      "Business locator",
+      screenName,
       style: TextStyle(
         color: Colors.black,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
     ),
     actions: [
       IconButton(
-        onPressed: () {
-          // Navigator.of(context).push(
-          //     MaterialPageRoute(builder: (context) => SearchScreen()));
-        },
-        icon: Icon(
-          Icons.search,
-          color: Colors.black,
-        ),
+        onPressed: firstIconNavigator,
+        icon:firstIconName,
+        color: Colors.black,
       ),
       IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.my_location,
-          color: Colors.black,
-        ),
-      )
+        onPressed: secondIconNavigator,
+        icon: secondIconName,
+        color: Colors.black,
+      ),
     ],
   );
 }
 
-
 // AppBar with one icon in action
 
-AppBar appBarWithOneIcons(String screenName ,Icon iconName, VoidCallback? iconNavigator)
-{
+AppBar appBarWithOneIcons(
+    String screenName, Icon iconName, VoidCallback? iconNavigator) {
   return AppBar(
     backgroundColor: Colors.white,
-
     title: Text(
       screenName,
-      style: TextStyle(
-          fontSize: 20,
-          color: Colors.black
+      style: TextStyle(fontSize: 20, color: Colors.black),
+    ),
+    leading: Builder(
+      builder: (BuildContext context) => IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        color: Colors.black,
       ),
     ),
-    leading:Builder(builder: (BuildContext context)=>IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-      color: Colors.black,
-    ),) ,
     actions: [
-      IconButton(
-          onPressed:iconNavigator,
-          icon: iconName,
-          color: Colors.black
-
-      )
+      IconButton(onPressed: iconNavigator, icon: iconName, color: Colors.black)
     ],
   );
 }

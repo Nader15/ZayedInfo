@@ -1,5 +1,6 @@
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/material.dart';
 
 class ProductResultScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class ProductResultScreen extends StatefulWidget {
 
 class _ProductResultScreenState extends State<ProductResultScreen> {
   bool isGride = false;
+
   Widget productContainer() {
     return InkWell(
       onTap: () {
@@ -99,43 +101,21 @@ class _ProductResultScreenState extends State<ProductResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "Products result",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          color: Colors.black,
-        ),
-        actions: [
-          IconButton(
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SearchScreen()));
-            },
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            color: Colors.black,
-            onPressed: () {
-              setState(() {
-                isGride = !isGride;
-              });
-            },
-            icon: isGride ? Icon(Icons.list) : Icon(Icons.grid_view_outlined),
-          ),
-        ],
+      appBar: appBarWithTwoIcons(
+        "Products result",
+        Icon(Icons.search),
+        () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SearchScreen()));
+        },
+        isGride ? Icon(Icons.list) : Icon(Icons.grid_view_outlined),
+        () {
+          setState(() {
+            isGride = !isGride;
+          });
+        },
       ),
+
       body: productInGridView(),
     );
   }

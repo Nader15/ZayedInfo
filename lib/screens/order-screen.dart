@@ -3,8 +3,10 @@ import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class OrderScreen extends StatefulWidget {
   @override
@@ -63,36 +65,18 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
+      appBar: appBarWithTwoIcons(
           "Lucca Steakhouse Egypt",
-          style: TextStyle(color: Colors.black),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).pop();
+          _bool ? Icon(Icons.bookmark_border) : Icon(Icons.bookmark),
+          () {
+            setState(() {
+              _bool = !_bool;
+            });
           },
-          color: Colors.black,
-        ),
-        actions: [
-          IconButton(
-            icon:_bool? Icon(Icons.bookmark_border): Icon(Icons.bookmark),
-            color: Colors.black,
-            onPressed: () {
-              setState(() {
-                _bool=!_bool;
-              });
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.share),
-            color: Colors.black,
-            onPressed: () {},
-          ),
-        ],
-      ),
+          Icon(Icons.share),
+          () {
+            Share.share("https://elshikhzayed.info/index.php/user/login");
+          }),
       backgroundColor: Color(0xffEFEFEF),
       body: SingleChildScrollView(
         child: Column(
@@ -109,7 +93,8 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Restaurant()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Restaurant()));
               },
               child: Stack(
                 alignment: AlignmentDirectional.center,
@@ -136,7 +121,6 @@ class _OrderScreenState extends State<OrderScreen> {
                 ],
               ),
             ),
-
             Container(
               height: 50,
               width: MediaQuery.of(context).size.width,

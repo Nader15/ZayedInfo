@@ -1,6 +1,7 @@
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
+import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/material.dart';
 
 class ShopNearbyScreen extends StatefulWidget {
@@ -17,7 +18,8 @@ class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
     color: Colors.white,
   );
 
-  Card buildPlaceCard(String imageName,double distance, String shopName, String location,VoidCallback? f) {
+  Card buildPlaceCard(String imageName, double distance, String shopName,
+      String location, VoidCallback? f) {
     return Card(
       elevation: 5,
       child: InkWell(
@@ -128,42 +130,22 @@ class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "Shops nearby",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          color: Colors.black,
-        ),
-        actions: [
-          IconButton(
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SearchScreen()));
-            },
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => CartScreen(cartList: [],)));
-            },
-            icon: Icon(Icons.shopping_cart_outlined),
-          ),
-        ],
+      appBar: appBarWithTwoIcons(
+        "Shops nearby",
+        Icon(Icons.search),
+        () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SearchScreen()));
+        },
+        Icon(Icons.shopping_cart_outlined),
+        () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CartScreen(
+                    cartList: [],
+                  )));
+        },
       ),
+
       body: ListView.builder(
         itemCount: 3,
         itemBuilder: (context, index) => buildPlaceCard('images/elNil.png', 30,

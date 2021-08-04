@@ -15,7 +15,7 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: BuildScreensAppBar("El Shikh Zayed \n @admin"),
+      appBar: buildScreensAppBar("El Shikh Zayed \n @admin"),
       body:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(

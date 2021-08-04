@@ -1,15 +1,16 @@
+import 'package:elsheikhzayedinfo/models/home_models/discount_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/place_item.dart';
 import 'package:elsheikhzayedinfo/ui/home_widgets.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
-import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
 import 'package:elsheikhzayedinfo/screens/offer_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
-import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/screens/shops_neary_screen.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'component/my_drawer.dart';
+import 'ui/my_drawer.dart';
 import 'component/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -114,15 +115,18 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          discountNearYouContainer('images/sh.jpg', 50, "Mohammed", "ماركتى",
-              () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => OffersScreen()));
-          }),
-          recentProductContainer('images/sh.jpg', "test", 21.0, () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => TestScreen()));
-          }),
+          discountNearYouContainer(
+            DiscountItem("images/sh.jpg", 50, "Mohammed", "ماركتى", () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => OffersScreen()));
+            }),
+          ),
+          recentProductContainer(
+            RecentProductItem('images/sh.jpg', "test", () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => TestScreen()));
+            }, 21.0),
+          ),
           Container(
             padding: EdgeInsets.all(10),
             width: double.infinity,
@@ -159,13 +163,19 @@ class _HomePageState extends State<HomePage> {
                     itemCount: 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => shopsNearbyContainer(
+                      Places(
                         'images/elNil.png',
                         31,
                         "Nile Scan & Labs",
-                        "الشيخ زايد السادس من أكتوبر", () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PlaceScreen()));
-                    }),
+                        "الشيخ زايد السادس من أكتوبر",
+                        "clinics",
+                        0,
+                        () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PlaceScreen()));
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -176,3 +186,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

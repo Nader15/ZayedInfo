@@ -1,4 +1,3 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
@@ -19,7 +18,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar("Setting"),
+      appBar: buildScreensAppBar("Setting"),
       body: Container(
         padding: EdgeInsets.all(5),
         height: MediaQuery.of(context).size.height,

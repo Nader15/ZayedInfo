@@ -72,7 +72,7 @@ Widget sliderWidget(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar(
+      appBar: buildScreensAppBar(
         "Search",
       ),
       body: Padding(

@@ -1,9 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:elsheikhzayedinfo/models/home_models/discount_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/place_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/notification_screen.dart';
 import 'package:elsheikhzayedinfo/screens/offer_nearby_screen.dart';
 import 'package:elsheikhzayedinfo/screens/product_result_screen.dart';
 import 'package:flutter/material.dart';
-
 
 AppBar buildHomeAppBar() {
   return AppBar(
@@ -31,8 +34,10 @@ AppBar buildHomeAppBar() {
       Builder(
         builder: (ctx) => IconButton(
           onPressed: () {
-            Navigator.of(ctx)
-                .push(MaterialPageRoute(builder: (ctx) => CartScreen(cartList: [],)));
+            Navigator.of(ctx).push(MaterialPageRoute(
+                builder: (ctx) => CartScreen(
+                      cartList: [],
+                    )));
           },
           icon: Icon(
             Icons.shopping_cart,
@@ -42,21 +47,20 @@ AppBar buildHomeAppBar() {
       ),
       Builder(
           builder: (ctx) => IconButton(
-            onPressed: () {
-              Navigator.of(ctx).push(MaterialPageRoute(
-                  builder: (ctx) => NotificationScreen()));
-            },
-            icon: Icon(
-              Icons.notifications_none,
-              color: Colors.black,
-            ),
-          ))
+                onPressed: () {
+                  Navigator.of(ctx).push(MaterialPageRoute(
+                      builder: (ctx) => NotificationScreen()));
+                },
+                icon: Icon(
+                  Icons.notifications_none,
+                  color: Colors.black,
+                ),
+              ))
     ],
   );
 }
 
-InkWell buildInkWellHome(
-     String imageName,  String placeName) {
+InkWell buildInkWellHome(String imageName, String placeName) {
   return InkWell(
     onTap: () {},
     child: Column(
@@ -76,8 +80,8 @@ InkWell buildInkWellHome(
   );
 }
 
-Widget discountNearYouContainer(String imageName, int discount,
-    String offerName, String shopName, VoidCallback? yourNavigation) {
+
+Widget discountNearYouContainer(  DiscountItem discountItem ) {
   return Builder(
     builder: (BuildContext context) => Container(
       padding: EdgeInsets.all(10),
@@ -112,44 +116,49 @@ Widget discountNearYouContainer(String imageName, int discount,
             height: 20,
           ),
           InkWell(
-            onTap: yourNavigation,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                alignment: AlignmentDirectional.topStart,
-                child: Stack(alignment: AlignmentDirectional.topEnd, children: [
-                  Image.asset(
-                    imageName,
-                    width: MediaQuery.of(context).size.width / 2,
+            onTap: discountItem.yourNavigation,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Stack(
+                    alignment: AlignmentDirectional.topEnd,
+                    children: [
+                      Image.asset(
+                        discountItem.imageName,
+                        width: MediaQuery.of(context).size.width / 2,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        alignment: AlignmentDirectional.center,
+                        height: 40,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Color(0xffed2939),
+                        ),
+                        child: Text(
+                          "${discountItem.discount} %",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    alignment: AlignmentDirectional.center,
-                    height: 40,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Color(0xffed2939),
-                    ),
-                    child: Text(
-                      "$discount %",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ),
-                ]),
-              ),
-              Text(
-                "Mohammed",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "ماركتى",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange),
-              ),
-            ]),
+                ),
+                Text(
+                  discountItem.offerName,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  discountItem.shopName,
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange),
+                ),
+              ],
+            ),
           )
         ],
       ),
@@ -157,9 +166,7 @@ Widget discountNearYouContainer(String imageName, int discount,
   );
 }
 
-
-Widget recentProductContainer(String imageName, String productName,
-    double price, VoidCallback? yourNavigation) {
+Widget recentProductContainer(RecentProductItem recentProductItem) {
   return Builder(
     builder: (BuildContext context) => Container(
       padding: EdgeInsets.all(10),
@@ -194,22 +201,22 @@ Widget recentProductContainer(String imageName, String productName,
             height: 20,
           ),
           InkWell(
-            onTap: yourNavigation,
+            onTap: recentProductItem.yourNavigation,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                 alignment: AlignmentDirectional.topStart,
                 child: Image.asset(
-                  imageName,
+                  recentProductItem.imageName,
                   width: MediaQuery.of(context).size.width / 2,
                 ),
               ),
               Text(
-                productName,
+                recentProductItem.productName,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               Text(
-                "$price",
+                "${recentProductItem.price}",
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -223,12 +230,10 @@ Widget recentProductContainer(String imageName, String productName,
   );
 }
 
-
-Widget shopsNearbyContainer(String imageName, int distance, String placeName,
-    String address, VoidCallback? yourNavigation) {
+Widget shopsNearbyContainer(Places shopNearBy) {
   return Builder(
     builder: (BuildContext context) => InkWell(
-      onTap: yourNavigation,
+      onTap: shopNearBy.yourNavigation,
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(7)),
@@ -243,20 +248,20 @@ Widget shopsNearbyContainer(String imageName, int distance, String placeName,
               child:
                   Stack(alignment: AlignmentDirectional.bottomStart, children: [
                 Image.asset(
-                  imageName,
+                  shopNearBy.imageName,
                   width: MediaQuery.of(context).size.width / 2,
                 ),
                 Container(
                   padding: EdgeInsets.all(5),
                   alignment: AlignmentDirectional.center,
-                  height: 40,
-                  width: 50,
+                  height: 35,
+                  width: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Color(0xffed2939),
                   ),
                   child: Text(
-                    "$distance m ",
+                    "${shopNearBy.distance} m ",
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
@@ -264,13 +269,13 @@ Widget shopsNearbyContainer(String imageName, int distance, String placeName,
             ),
             Row(
               children: [
-                Text(placeName),
+                Text(shopNearBy.placeName),
               ],
             ),
             Row(
               children: [
                 Icon(Icons.location_on),
-                Text(address),
+                Text(shopNearBy.address),
               ],
             ),
             Row(
@@ -280,7 +285,7 @@ Widget shopsNearbyContainer(String imageName, int distance, String placeName,
                   child: Row(
                     children: [
                       Icon(Icons.star_border),
-                      Text("0(0)"),
+                      Text("0(${shopNearBy.rate})"),
                     ],
                   ),
                 ),
@@ -292,7 +297,7 @@ Widget shopsNearbyContainer(String imageName, int distance, String placeName,
                   width: 60,
                   height: 20,
                   child: Text(
-                    "Clinics",
+                    shopNearBy.category,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -303,4 +308,42 @@ Widget shopsNearbyContainer(String imageName, int distance, String placeName,
       ),
     ),
   );
+}
+
+class MySlider extends StatefulWidget {
+  @override
+  _MySliderState createState() => _MySliderState();
+}
+
+class _MySliderState extends State<MySlider> {
+  List imageList = [
+    'images/first.jpg',
+    'images/second.jpg',
+    'images/third.jpeg',
+    //"images/fourth.jpg",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: CarouselSlider.builder(
+        itemCount: imageList.length,
+        itemBuilder: (BuildContext context, int index, int realIndex) {
+          return Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Image.asset(
+              imageList[index],
+              fit: BoxFit.fill,
+            ),
+          );
+        },
+        options: CarouselOptions(
+          height: 180,
+          initialPage: 0,
+        ),
+      ),
+    );
+  }
 }

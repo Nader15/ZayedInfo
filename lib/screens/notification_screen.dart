@@ -16,7 +16,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      appBar: BuildScreensAppBar("Notification"),
+      appBar: buildScreensAppBar("Notification"),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

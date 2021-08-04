@@ -28,7 +28,7 @@ class _DirectionsScreenState extends State<DirectionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar("Lucca Steakhouse Egypt"),
+      appBar: buildScreensAppBar("Lucca Steakhouse Egypt"),
       body: Stack(
         alignment: AlignmentDirectional.topEnd,
         children: [

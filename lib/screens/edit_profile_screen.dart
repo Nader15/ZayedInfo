@@ -30,7 +30,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildScreensAppBar("Edit Profile"),
+      appBar: buildScreensAppBar("Edit Profile"),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(

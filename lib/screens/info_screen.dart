@@ -19,7 +19,7 @@ class InfoScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
 
-      appBar: BuildScreensAppBar("El Sheikh Zayed info"),
+      appBar: buildScreensAppBar("El Sheikh Zayed info"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

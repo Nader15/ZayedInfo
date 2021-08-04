@@ -196,7 +196,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: BuildScreensAppBar("Cart"),
+      appBar: buildScreensAppBar("Cart"),
       body:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(

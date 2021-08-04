@@ -1,4 +1,3 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -68,7 +67,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
     );
   }
 
-  Widget whenBoomarkItem(BookMarkItem bookMarkItem) {
+  Widget whenBookmarkItem(BookMarkItem bookMarkItem) {
     return InkWell(
       onTap: () {
         Navigator.of(context)
@@ -137,12 +136,12 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
-      appBar: BuildScreensAppBar("Bookmark"),
+      appBar: buildScreensAppBar("Bookmark"),
       body: widget.bookMarkList.isEmpty ? whenNoBookmark() :
       ListView.builder(
         itemCount: widget.bookMarkList.length,
         itemBuilder: (BuildContext context, index) =>
-            whenBoomarkItem(widget.bookMarkList[index]),
+            whenBookmarkItem(widget.bookMarkList[index]),
       ),
     );
   }

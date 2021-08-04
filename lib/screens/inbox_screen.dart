@@ -20,7 +20,7 @@ class _InboxState extends State<Inbox> {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
 
-      appBar: BuildScreensAppBar(
+      appBar: buildScreensAppBar(
         "El Sheikh Zayed info",
       ),
       body: SingleChildScrollView(

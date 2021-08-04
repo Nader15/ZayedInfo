@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar BuildScreensAppBar(@required String pageTitle) {
+AppBar buildScreensAppBar(@required String pageTitle) {
   return AppBar(
     leading: Builder(
       builder: (context) => IconButton(

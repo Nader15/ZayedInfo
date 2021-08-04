@@ -20,7 +20,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
-  String Name = "";
   Color deepOrange = Colors.deepOrange;
   int initialStep = 0;
   bool isPaymentPressed = false;
@@ -86,13 +85,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 TextFormField(
                   controller: nameController,
                   keyboardType: TextInputType.name,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return " enter your name ";
-                    }
+                  validator: ( value) {
+                    if(value!.isEmpty){return " enter your name";}
+                    else {return null;}
                   },
-                  onSaved:(val) {
-                    Name = val!;
+                  onSaved:(String? val) {
+                    print(val);
                   },
                   decoration: InputDecoration(
                       hintText: "Full name*",
@@ -464,8 +462,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  _submit();
                   initialStep++;
+                  if(_formKey.currentState!.validate()){return;}
+                   //{Scaffold.of(context).showSnackBar(SnackBar(content: Text("entre"))); }
                 });
               },
               child: Container(
@@ -549,7 +548,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     }
   }
   void _submit(){
-    if(  _formKey.currentState!.validate()){return;}
+  //  if(  _formKey.currentState!.validate()){return;}
+    if(nameController.text.isEmpty){print("enter yor name",);}
     _formKey.currentState!.save();
   }
 

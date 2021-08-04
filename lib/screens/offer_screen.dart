@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/models/home_models/discount_item.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:share/share.dart';
 
 class OffersScreen extends StatefulWidget {
-  const OffersScreen({Key? key}) : super(key: key);
+ // final DiscountItem discountItem;
+  const OffersScreen({Key? key,}) ;
 
   @override
   _OffersScreenState createState() => _OffersScreenState();

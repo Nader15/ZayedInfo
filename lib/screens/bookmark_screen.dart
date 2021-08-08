@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -5,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookMarkScreen extends StatefulWidget {
-  final List<BookMarkItem> bookMarkList;
-
-  BookMarkScreen({Key? key, required this.bookMarkList});
+  // final List<BookMarkItem> bookMarkList;
+  //
+  // BookMarkScreen({required this.bookMarkList});
 
   @override
   _BookMarkScreenState createState() => _BookMarkScreenState();
@@ -66,7 +67,6 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
       ),
     );
   }
-
   Widget whenBookmarkItem(BookMarkItem bookMarkItem) {
     return InkWell(
       onTap: () {
@@ -137,11 +137,11 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
       appBar: buildScreensAppBar("Bookmark"),
-      body: widget.bookMarkList.isEmpty ? whenNoBookmark() :
+      body: bookMarkList.isEmpty ? whenNoBookmark() :
       ListView.builder(
-        itemCount: widget.bookMarkList.length,
+        itemCount: bookMarkList.length,
         itemBuilder: (BuildContext context, index) =>
-            whenBookmarkItem(widget.bookMarkList[index]),
+            whenBookmarkItem(bookMarkList[index]),
       ),
     );
   }

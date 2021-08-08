@@ -35,9 +35,7 @@ AppBar buildHomeAppBar() {
         builder: (ctx) => IconButton(
           onPressed: () {
             Navigator.of(ctx).push(MaterialPageRoute(
-                builder: (ctx) => CartScreen(
-                      cartList: [],
-                    )));
+                builder: (ctx) => CartScreen()));
           },
           icon: Icon(
             Icons.shopping_cart,
@@ -216,28 +214,30 @@ Widget recentProductContainer(RecentProductItem recentProductItem) {
           ),
           InkWell(
             onTap: recentProductItem.yourNavigation,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                alignment: AlignmentDirectional.topStart,
-                child: Image.asset(
-                  recentProductItem.imageName,
-                  width: MediaQuery.of(context).size.width / 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Image.asset(
+                    recentProductItem.imageName,
+                    width: MediaQuery.of(context).size.width / 2,
+                  ),
                 ),
-              ),
-              Text(
-                recentProductItem.productName,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "${recentProductItem.price}",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange),
-              ),
-            ]),
-          )
+                Text(
+                  recentProductItem.productName,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "${recentProductItem.price}",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     ),

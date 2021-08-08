@@ -2,7 +2,6 @@ import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
-import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,9 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
+
+  final List<CartItem> cartList=[];
+
   bool isOrderHasBeenPressed = false;
   int count = 1;
 
@@ -126,13 +128,15 @@ class _TestScreenState extends State<TestScreen> {
                 onTap: () {
                   setState(
                     () {
+                      cartItemList.add( CartItem(
+                          "images/sh.jpg", "Test", itemsCount, price));
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => CartScreen(
-                            cartList: [
-                              CartItem(
-                                  "images/sh.jpg", "Test", itemsCount, price)
-                            ],
+                            // cartList: [
+                            //   CartItem(
+                            //       "images/sh.jpg", "Test", itemsCount, price)
+                            // ],
                           ),
                         ),
                       );

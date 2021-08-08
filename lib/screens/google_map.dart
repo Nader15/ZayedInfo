@@ -7,7 +7,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  static const _initialCameraPositio = CameraPosition(
+  static const _initialCameraPosition = CameraPosition(
     target: LatLng(30.00808, 31.21093),
     zoom: 11.5,
   );
@@ -17,30 +17,47 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(alignment: AlignmentDirectional.bottomCenter, children: [
-        GoogleMap(
-          initialCameraPosition: _initialCameraPositio,
-          myLocationEnabled: false,
-          zoomControlsEnabled: false,
-          onMapCreated: (controller) => _googleMapController = controller,
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Container(
-            alignment: Alignment.center,
-            color: Colors.white,
-            height: 100,
-            width: 40,
-            margin: EdgeInsets.all(15),
-            child: Column(
-              children: [
-                IconButton(icon:Icon(Icons.add),onPressed: (){},),
-                IconButton(icon:Icon(Icons.minimize),onPressed: (){},),
-              ],
+      body: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: [
+          GoogleMap(
+            initialCameraPosition: _initialCameraPosition,
+            myLocationEnabled: false,
+            zoomControlsEnabled: false,
+            onMapCreated: (controller) => _googleMapController = controller,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.white,
+              height: 100,
+              width: 40,
+              margin: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      setState(() {
+
+                      });
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.minimize),
+                    onPressed: () {
+                      setState(() {
+
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

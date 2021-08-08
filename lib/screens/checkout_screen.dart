@@ -522,7 +522,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CartScreen(cartList: cartList)));
+            builder: (context) => CartScreen()));
       },
       child: Container(
         width: MediaQuery

@@ -1,5 +1,5 @@
 import 'package:elsheikhzayedinfo/models/category_item.dart';
-import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
+import 'package:elsheikhzayedinfo/screens/restaurant_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:elsheikhzayedinfo/ui/categories.dart';
 import 'package:flutter/material.dart';

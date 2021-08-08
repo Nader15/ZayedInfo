@@ -114,7 +114,7 @@ class _MyDrawerState extends State<MyDrawer> {
             title: Text("Orders"),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CartScreen(cartList: cartList)));
+                  builder: (context) => CartScreen()));
             },
             leading: Icon(Icons.shopping_cart),
           ),

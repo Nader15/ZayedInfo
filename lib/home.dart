@@ -1,10 +1,13 @@
 import 'package:elsheikhzayedinfo/home_page.dart';
-import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/bookmark_screen.dart';
 import 'package:elsheikhzayedinfo/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+  // final List <BookMarkItem> bookMarkList;
+  //
+  // const Home({ required this.bookMarkList}) ;
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -14,12 +17,7 @@ class _HomeState extends State<Home> {
   List<Widget> pages = [
     HomePage(),
     Categories(),
-    BookMarkScreen(
-      bookMarkList: [
-        BookMarkItem('images/elNil.png', "Nile Scan & Labs",
-            "يضم مركز النيل للأشعه و التحاليل نخبه من أساتذه و أعضاء هيئه التدريس بالقصر العينى و معهد الأورام ")
-      ],
-    ),
+    BookMarkScreen(),
   ];
 
   int pageIndex = 0;

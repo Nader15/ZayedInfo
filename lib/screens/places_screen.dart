@@ -1,4 +1,7 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
+import 'package:elsheikhzayedinfo/screens/bookmark_screen.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -73,12 +76,23 @@ class _PlaceScreenState extends State<PlaceScreen> {
       child: Scaffold(
         appBar: appBarWithTwoIcons(
             "Nile Scan & Labs",
-            isPressed ? Icon(Icons.bookmark_border) : Icon(Icons.bookmark),
-            () {},
-            Icon(Icons.share), () {
-          Share.share("https://elshikhzayed.info/index.php/user/login");
-        }),
+            isPressed ? Icon(Icons.bookmark) : Icon(Icons.bookmark_border),
+            () {
+              setState(
+                () {
+                  bookMarkList.add(BookMarkItem(
+                      'images/elNil.png',
+                      "Nile Scan & Labs",
+                      "يضم مركز النيل للأشعه و التحاليل نخبه من أساتذه و أعضاء هيئه التدريس بالقصر العينى و معهد الأورام "),);
+                  isPressed = !isPressed;
 
+                },
+              );
+            },
+            Icon(Icons.share),
+            () {
+              Share.share("https://elshikhzayed.info/index.php/user/login");
+            }),
         backgroundColor: Color(0xffEFEFEF),
         body: SingleChildScrollView(
           child: Column(

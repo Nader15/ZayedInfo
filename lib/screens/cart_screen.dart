@@ -1,5 +1,4 @@
 import 'package:elsheikhzayedinfo/component/global.dart';
-import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
 import 'package:elsheikhzayedinfo/screens/checkout_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
 class CartScreen extends StatefulWidget {
-  final List<CartItem> cartList;
 
-  CartScreen({Key? key, required this.cartList });
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -177,7 +174,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     onPressed: () {
                       setState(() {
-                        widget.cartList.removeAt(index);
+                        cartItemList.removeAt(index);
                       });
                     },
                     color: Colors.deepOrange,
@@ -201,12 +198,12 @@ class _CartScreenState extends State<CartScreen> {
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
           height: MediaQuery.of(context).size.height - 170,
-          child: widget.cartList.isEmpty
+          child: cartItemList.isEmpty
               ? whenCardPageEmpty()
               : ListView.builder(
-                  itemCount: widget.cartList.length,
+                  itemCount: cartItemList.length,
                   itemBuilder: (BuildContext context, index) =>
-                      whenAddingToCart(widget.cartList[index], index),
+                      whenAddingToCart(cartItemList[index], index),
                 ),
         ),
         mainRow(),

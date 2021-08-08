@@ -1,8 +1,10 @@
+import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
-import 'package:elsheikhzayedinfo/screens/resturant_screen.dart';
+import 'package:elsheikhzayedinfo/screens/restaurant_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +73,10 @@ class _OrderScreenState extends State<OrderScreen> {
           () {
             setState(() {
               _bool = !_bool;
+              bookMarkList.add(
+                BookMarkItem('images/elNil.png', "Nile Scan & Labs",
+                    "يضم مركز النيل للأشعه و التحاليل نخبه من أساتذه و أعضاء هيئه التدريس بالقصر العينى و معهد الأورام "),
+              );
             });
           },
           Icon(Icons.share),

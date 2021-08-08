@@ -34,9 +34,7 @@ class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
         () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => CartScreen(
-                cartList: [],
-              ),
+              builder: (context) => CartScreen(),
             ),
           );
         },

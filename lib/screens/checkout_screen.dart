@@ -15,8 +15,8 @@ class CheckOutScreen extends StatefulWidget {
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
 
-
   final GlobalKey <FormState> _formKey = GlobalKey();
+
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
@@ -62,11 +62,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               Text("Payment", style: TextStyle(color: deepOrange)),
             ],
           ),
-          SizedBox(
+          Builder(builder: (BuildContext context)=>SizedBox(
             height: MediaQuery
                 .of(context)
                 .size
                 .height / 20,
+          ),
           ),
         ],
       ),
@@ -74,8 +75,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   }
 
   Widget detailsContainer() {
-    return Container(
+    return Builder(builder: (BuildContext context)=>Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("ORDER DETAILS"),
           Form(
@@ -85,9 +87,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 TextFormField(
                   controller: nameController,
                   keyboardType: TextInputType.name,
-                  validator: ( value) {
-                    if(value!.isEmpty){return " enter your name";}
-                    else {return null;}
+                  validator: (value) {
+                    if (value!.isEmpty || value.length < 3)
+                      return "enter your user name";
                   },
                   onSaved:(String? val) {
                     print(val);
@@ -100,6 +102,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 TextFormField(
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value!.isEmpty || value.length < 11)
+                      return "enter valid phone number";
+                  },
+                  onSaved:(String? val) {
+                    print(val);
+                  },
                   decoration: InputDecoration(
                       hintText: "phone*",
                       focusedBorder: UnderlineInputBorder(
@@ -108,6 +117,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 TextFormField(
                   controller: addressController,
                   keyboardType: TextInputType.streetAddress,
+                  validator: ( value) {
+                    if(value!.isEmpty){return " enter your address";}
+                    else {return null;}
+                  },
+                  onSaved:(String? val) {
+                    print(val);
+                  },
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(Icons.my_location_rounded),
@@ -138,6 +154,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -462,9 +479,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  initialStep++;
-                  if(_formKey.currentState!.validate()){return;}
-                   //{Scaffold.of(context).showSnackBar(SnackBar(content: Text("entre"))); }
+                  _validateInputs();
+                  if (_formKey.currentState!.validate()) {initialStep++;}
                 });
               },
               child: Container(
@@ -547,12 +563,15 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       return doneButton();
     }
   }
-  void _submit(){
-  //  if(  _formKey.currentState!.validate()){return;}
-    if(nameController.text.isEmpty){print("enter yor name",);}
-    _formKey.currentState!.save();
-  }
 
+  void _validateInputs() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    } else {
+      setState(() {
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -579,7 +598,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 height: MediaQuery
                     .of(context)
                     .size
-                    .height / 1.25,
+                    .height / 1.23,
                 padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

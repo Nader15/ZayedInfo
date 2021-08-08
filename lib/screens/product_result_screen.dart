@@ -1,11 +1,14 @@
-import 'package:elsheikhzayedinfo/models/product_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:elsheikhzayedinfo/ui/product_container.dart';
 import 'package:flutter/material.dart';
 
 class ProductResultScreen extends StatefulWidget {
-  const ProductResultScreen({Key? key}) : super(key: key);
+  final List<RecentProductItem> recentProductList;
+
+  const ProductResultScreen({Key? key, required this.recentProductList})
+      : super(key: key);
 
   @override
   _ProductResultScreenState createState() => _ProductResultScreenState();
@@ -13,10 +16,12 @@ class ProductResultScreen extends StatefulWidget {
 
 class _ProductResultScreenState extends State<ProductResultScreen> {
   bool isGrid = false;
-
+  // RecentProductItem recentProductItem =
+  //     RecentProductItem('images/sh.jpg', "test", 100, "metro", "ssss", () {});
+List <RecentProductItem> list=[];
   GridView productInGridView() {
     return GridView.builder(
-      itemCount: 8,
+      itemCount: 2,
       //padding: EdgeInsets.all(0),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         mainAxisSpacing: 10,
@@ -26,8 +31,9 @@ class _ProductResultScreenState extends State<ProductResultScreen> {
             : MediaQuery.of(context).size.width,
         mainAxisExtent: MediaQuery.of(context).size.height / 3,
       ),
-      itemBuilder: (context, index) =>
-          productContainer(ProductItem('images/sh.jpg', "test", 100, "Nour")),
+      itemBuilder: (context, index) => productContainer(
+        widget.recentProductList[index],
+      ),
     );
   }
 

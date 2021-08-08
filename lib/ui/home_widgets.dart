@@ -80,8 +80,7 @@ InkWell buildInkWellHome(String imageName, String placeName) {
   );
 }
 
-
-Widget discountNearYouContainer(  DiscountItem discountItem ) {
+Widget discountNearYouContainer(DiscountItem discountItem) {
   return Builder(
     builder: (BuildContext context) => Container(
       padding: EdgeInsets.all(10),
@@ -101,7 +100,12 @@ Widget discountNearYouContainer(  DiscountItem discountItem ) {
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => OffersNearbyScreen()));
+                      builder: (context) => OffersNearbyScreen(
+                            discountList: [
+                              DiscountItem("images/sh.jpg", 50, "Mohammed",
+                                  "Nour", "ss", 2.32, () {}, 1, 300)
+                            ],
+                          )));
                 },
                 child: Text(
                   "Show All",
@@ -185,8 +189,18 @@ Widget recentProductContainer(RecentProductItem recentProductItem) {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProductResultScreen()));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ProductResultScreen(
+                        recentProductList: [
+                          RecentProductItem('images/sh.jpg', "test", 100,
+                              "metro", "ssss", () {}),
+                          RecentProductItem('images/car.jpg', "test", 100,
+                              "metro", "ssss", () {}),
+                        ],
+                      ),
+                    ),
+                  );
                 },
                 child: Text(
                   "Show All",

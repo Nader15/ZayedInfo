@@ -1,13 +1,13 @@
-import 'package:elsheikhzayedinfo/models/product_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 
-Widget productContainer(ProductItem productItem) {
+Widget productContainer(RecentProductItem recentProductItem) {
   return Builder(
     builder: (BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => TestScreen()));
+            .push(MaterialPageRoute(builder: (context) => TestScreen(recentProductList: [],)));
       },
       child: Container(
         height: MediaQuery.of(context).size.height / 3,
@@ -23,7 +23,7 @@ Widget productContainer(ProductItem productItem) {
               height: MediaQuery.of(context).size.height / 5,
               decoration: (BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(productItem.imageName),
+                  image: AssetImage(recentProductItem.imageName),
                   fit: BoxFit.fill,
                 ),
               )),
@@ -35,7 +35,7 @@ Widget productContainer(ProductItem productItem) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(productItem.productName),
+                      Text(recentProductItem.productName),
                       Container(
                         alignment: AlignmentDirectional.center,
                         height: 30,
@@ -45,7 +45,7 @@ Widget productContainer(ProductItem productItem) {
                           color: Colors.deepOrange,
                         ),
                         child: Text(
-                          "${productItem.price}",
+                          "${recentProductItem.price}",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
@@ -58,7 +58,7 @@ Widget productContainer(ProductItem productItem) {
                         Icons.location_on,
                         color: Colors.black,
                       ),
-                      Text(productItem.placeName),
+                      Text(recentProductItem.shopName),
                     ],
                   ),
                 ],

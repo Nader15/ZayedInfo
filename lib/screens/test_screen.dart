@@ -1,5 +1,6 @@
 import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/cart_item.dart';
+import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
 import 'package:elsheikhzayedinfo/screens/cart_screen.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -8,7 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
 class TestScreen extends StatefulWidget {
-  const TestScreen({Key? key}) : super(key: key);
+  final List<RecentProductItem> recentProductList;
+
+  const TestScreen({Key? key, required this.recentProductList})
+      : super(key: key);
 
   @override
   _TestScreenState createState() => _TestScreenState();
@@ -120,18 +124,20 @@ class _TestScreenState extends State<TestScreen> {
               ),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    // for( var i = 0 ; i < cartList.length; i++ ) {
-                    //   cartList.add(item);
-                    // }
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CartScreen(
-                              cartList: [
-                                CartItem(
-                                    "images/sh.jpg", "Test", itemsCount, price)
-                              ],
-                            )));
-                  });
+                  setState(
+                    () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CartScreen(
+                            cartList: [
+                              CartItem(
+                                  "images/sh.jpg", "Test", itemsCount, price)
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -210,6 +216,88 @@ class _TestScreenState extends State<TestScreen> {
     );
   }
 
+  Widget mainWidget(RecentProductItem recentProductItem) {
+    return Column(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height / 4,
+          padding: const EdgeInsets.all(30),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage(recentProductItem.imageName),
+            ),
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Text(
+               "${recentProductItem.price}",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "In stock",
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Color(0xff415B20),
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(15),
+                  bottomLeft: Radius.circular(15))),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.all(30),
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                recentProductItem.productName,
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(recentProductItem.description),
+            ],
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: ListTile(
+            onTap: recentProductItem.yourNavigation,
+            leading: Icon(
+              Icons.location_on,
+              color: Colors.deepOrange,
+            ),
+            title: Text(
+              recentProductItem.shopName,
+              style: TextStyle(color: Colors.deepOrange),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,86 +314,7 @@ class _TestScreenState extends State<TestScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 4,
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('images/sh.jpg'),
-                  ),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Text(
-                      "21.0",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "In stock",
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Color(0xff415B20),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(15))),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(30),
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "test",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text("ss"),
-                  ],
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: ListTile(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => PlaceScreen()));
-                  },
-                  leading: Icon(
-                    Icons.location_on,
-                    color: Colors.deepOrange,
-                  ),
-                  title: Text(
-                    "Nour",
-                    style: TextStyle(color: Colors.deepOrange),
-                  ),
-                ),
-              ),
-            ]),
+            mainWidget(widget.recentProductList[0]),
             Container(
                 child: //orderContainer(),
                     isOrderHasBeenPressed ? orderContainer() : mainRow()),

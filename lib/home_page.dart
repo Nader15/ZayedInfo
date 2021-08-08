@@ -11,7 +11,6 @@ import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ui/my_drawer.dart';
-import 'component/widgets.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,8 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<DiscountItem> discountList = [];
+  DiscountItem? item;
 
-  List imglist = [
+  List imageList = [
     'images/first.jpg',
     'images/second.jpg',
     'images/third.jpeg',
@@ -32,15 +33,21 @@ class _HomePageState extends State<HomePage> {
     'images/atm.jpg',
     'images/bank.jpg',
     'images/beauty.jpg',
-    'images/restaurant.jpg',
+    'images/cafe.jpg',
+    'images/car.jpg',
+    'images/charities.jpg',
+    'images/clinics.jpg',
   ];
 
-  List placenameli = [
-    'Resturant',
+  List placeNameList = [
+    'Restaurant',
     'ATMs',
     'Banks',
     'Beauty',
-    'Resturant',
+    'Cafe',
+    'Car service',
+    'Charities',
+    'Clinics',
   ];
 
   List<Widget> pages = [
@@ -61,130 +68,184 @@ class _HomePageState extends State<HomePage> {
       drawer: MyDrawer(),
       appBar: buildHomeAppBar(),
       body: SingleChildScrollView(
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SearchScreen()));
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SearchScreen()));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Find products ,deals ,shops....",
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        Icon(Icons.search),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                  ),
+                )),
+            MySlider(),
+            Container(
+              child: Text(
+                "Top Categories",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 4,
+              child: GridView.builder(
+                padding: EdgeInsets.all(10),
+                itemCount: placesImg.length,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 100,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10),
+                itemBuilder: (BuildContext context, int index) {
+                  return buildInkWellHome(
+                      placesImg[index], placeNameList[index]);
                 },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: Row(
+              ),
+            ),
+            discountNearYouContainer(
+              DiscountItem(
+                "images/sh.jpg",
+                50,
+                "Mohammed",
+                "Nour",
+                "ss",
+                2.32,
+                () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => OffersScreen(
+                        discountList: [
+                          DiscountItem(
+                            "images/sh.jpg",
+                            50,
+                            "Mohammed",
+                            "Nour",
+                            "ss",
+                            2.32,
+                            () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PlaceScreen()));
+                            },
+                            1,
+                            300,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                1,
+                300,
+              ),
+            ),
+            recentProductContainer(
+              RecentProductItem(
+                'images/sh.jpg',
+                "test",
+                100,
+                "Metro",
+                "sssss",
+                () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => TestScreen(
+                        recentProductList: [
+                          RecentProductItem(
+                              'images/sh.jpg', "test", 100, "Metro", "sssss",
+                              () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => PlaceScreen()),
+                            );
+                          })
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Find products ,deals ,shops....",
+                        "Shops nearby ",
                         style: TextStyle(
-                          fontSize: 15,
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ShopNearbyScreen()));
+                        },
+                        child: Text(
+                          "Show All",
+                          style: TextStyle(
+                            color: Colors.deepOrange,
+                          ),
                         ),
                       ),
-                      Icon(Icons.search),
                     ],
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-              )),
-          MySlider(),
-          Container(
-            child: Text(
-              "Top Categories",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height / 4,
-            child: GridView.builder(
-              padding: EdgeInsets.all(10),
-              itemCount: placesImg.length,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 100,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10),
-              itemBuilder: (BuildContext context, int index) {
-                return buildInkWellHome(placesImg[index], placenameli[index]);
-              },
-            ),
-          ),
-          discountNearYouContainer(
-            DiscountItem("images/sh.jpg", 50, "Mohammed", "ماركتى", () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => OffersScreen()));
-            }),
-          ),
-          recentProductContainer(
-            RecentProductItem('images/sh.jpg', "test", () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TestScreen()));
-            }, 21.0),
-          ),
-          Container(
-            padding: EdgeInsets.all(10),
-            width: double.infinity,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Shops nearby ",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ShopNearbyScreen()));
-                      },
-                      child: Text(
-                        "Show All",
-                        style: TextStyle(
-                          color: Colors.deepOrange,
+                  Container(
+                    height: MediaQuery.of(context).size.height / 2.4,
+                    child: ListView.builder(
+                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => shopsNearbyContainer(
+                        Places(
+                          'images/elNil.png',
+                          31,
+                          "Nile Scan & Labs",
+                          "الشيخ زايد السادس من أكتوبر",
+                          "clinics",
+                          0,
+                          () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PlaceScreen()));
+                          },
                         ),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 2.4,
-                  child: ListView.builder(
-                    itemCount: 5,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => shopsNearbyContainer(
-                      Places(
-                        'images/elNil.png',
-                        31,
-                        "Nile Scan & Labs",
-                        "الشيخ زايد السادس من أكتوبر",
-                        "clinics",
-                        0,
-                        () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PlaceScreen()));
-                        },
-                      ),
-                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
 }
-

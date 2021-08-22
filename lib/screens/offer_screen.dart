@@ -1,5 +1,5 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/models/home_models/discount_item.dart';
-import 'package:elsheikhzayedinfo/screens/places_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -154,7 +154,7 @@ class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffEFEFEF),
+        backgroundColor: scaffoldBackGround,
         appBar: appBarWithOneIcons(
           "Mohammed",
           Icon(Icons.share),

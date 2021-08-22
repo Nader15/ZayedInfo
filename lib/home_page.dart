@@ -10,6 +10,7 @@ import 'package:elsheikhzayedinfo/screens/shops_neary_screen.dart';
 import 'package:elsheikhzayedinfo/screens/test_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'component/global.dart';
 import 'ui/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -170,22 +171,47 @@ class _HomePageState extends State<HomePage> {
                 "Metro",
                 "sssss",
                 () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => TestScreen(
-                        recentProductList: [
-                          RecentProductItem(
-                              'images/sh.jpg', "test", 100, "Metro", "sssss",
-                              () {
+                  setState(
+                    () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TestScreen()));
+                      recentProductList.add(
+                        RecentProductItem(
+                          'images/sh.jpg',
+                          "test",
+                          100,
+                          "Metro",
+                          "sssss",
+                          () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                   builder: (context) => PlaceScreen()),
                             );
-                          })
-                        ],
-                      ),
-                    ),
+                          },
+                        ),
+                      );
+                    },
                   );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => TestScreen(
+                  //       recentProductList: [
+                  //         RecentProductItem(
+                  //           'images/sh.jpg',
+                  //           "test",
+                  //           100,
+                  //           "Metro",
+                  //           "sssss",
+                  //           () {
+                  //             Navigator.of(context).push(
+                  //               MaterialPageRoute(
+                  //                   builder: (context) => PlaceScreen()),
+                  //             );
+                  //           },
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // );
                 },
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/models/home_models/place_item.dart';
 import 'package:elsheikhzayedinfo/screens/order-screen.dart';
 import 'package:elsheikhzayedinfo/ui/place_card.dart';
@@ -14,6 +15,7 @@ class _FoodTypeState extends State<FoodType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    backgroundColor: scaffoldBackGround,
       appBar: buildScreensAppBar("Grill"),
       body: ListView.builder(
         padding: EdgeInsets.all(5),

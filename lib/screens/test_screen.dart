@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
 class TestScreen extends StatefulWidget {
-  final List<RecentProductItem> recentProductList;
+ // final List<RecentProductItem> recentProductList;
 
-  const TestScreen({Key? key, required this.recentProductList})
+  const TestScreen({Key? key})
       : super(key: key);
 
   @override
@@ -19,16 +19,11 @@ class TestScreen extends StatefulWidget {
 
 class _TestScreenState extends State<TestScreen> {
 
-  final List<CartItem> cartList=[];
-
   bool isOrderHasBeenPressed = false;
   int count = 1;
 
   double price = 21.0;
-
-  //double totalPrice = 21.0;
-
-  double increasement = 21.0;
+  double increment = 21.0;
 
   Widget orderContainer() {
     return Container(
@@ -84,7 +79,7 @@ class _TestScreenState extends State<TestScreen> {
                               if (count > 1) {
                                 count--;
                                 itemsCount = count;
-                                price = price - increasement;
+                                price = price - increment;
                                 totalPrice = price;
                               } else {}
                             });
@@ -97,12 +92,14 @@ class _TestScreenState extends State<TestScreen> {
                         ),
                         IconButton(
                           onPressed: () {
-                            setState(() {
-                              count++;
-                              itemsCount = count;
-                              price = price + increasement;
-                              totalPrice = price;
-                            });
+                            setState(
+                              () {
+                                count++;
+                                itemsCount = count;
+                                price = price + increment;
+                                totalPrice = price;
+                              },
+                            );
                           },
                           icon: Icon(Icons.add),
                         ),
@@ -128,16 +125,11 @@ class _TestScreenState extends State<TestScreen> {
                 onTap: () {
                   setState(
                     () {
-                      cartItemList.add( CartItem(
-                          "images/sh.jpg", "Test", itemsCount, price));
+                      cartItemList.add(
+                          CartItem("images/sh.jpg", "Test", itemsCount, price));
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => CartScreen(
-                            // cartList: [
-                            //   CartItem(
-                            //       "images/sh.jpg", "Test", itemsCount, price)
-                            // ],
-                          ),
+                          builder: (context) => CartScreen(),
                         ),
                       );
                     },
@@ -239,7 +231,7 @@ class _TestScreenState extends State<TestScreen> {
           child: Column(
             children: [
               Text(
-               "${recentProductItem.price}",
+                "${recentProductItem.price}",
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.red,
@@ -318,7 +310,7 @@ class _TestScreenState extends State<TestScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            mainWidget(widget.recentProductList[0]),
+            mainWidget(recentProductList[0]),
             Container(
                 child: //orderContainer(),
                     isOrderHasBeenPressed ? orderContainer() : mainRow()),

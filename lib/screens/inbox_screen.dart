@@ -1,4 +1,4 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -18,8 +18,7 @@ class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
-
+      backgroundColor: scaffoldBackGround,
       appBar: buildScreensAppBar(
         "El Sheikh Zayed info",
       ),

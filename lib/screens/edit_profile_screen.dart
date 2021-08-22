@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -43,6 +44,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackGround,
       appBar: buildScreensAppBar("Edit Profile"),
       body: Center(
         child: SingleChildScrollView(

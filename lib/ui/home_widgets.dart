@@ -187,6 +187,7 @@ Widget recentProductContainer(RecentProductItem recentProductItem) {
               ),
               InkWell(
                 onTap: () {
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => ProductResultScreen(

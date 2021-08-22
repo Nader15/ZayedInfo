@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/models/home_models/recent_product_item.dart';
 import 'package:elsheikhzayedinfo/screens/search_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -40,7 +41,7 @@ List <RecentProductItem> list=[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor: scaffoldBackGround,
       appBar: appBarWithTwoIcons(
         "Products result",
         Icon(Icons.search),

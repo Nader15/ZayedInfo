@@ -14,11 +14,11 @@ class ShopNearbyScreen extends StatefulWidget {
 }
 
 class _ShopNearbyScreenState extends State<ShopNearbyScreen> {
-  TextStyle _s = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-  );
+  // TextStyle _s = TextStyle(
+  //   fontSize: 20,
+  //   fontWeight: FontWeight.bold,
+  //   color: Colors.white,
+  // );
 
   @override
   Widget build(BuildContext context) {

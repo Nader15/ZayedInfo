@@ -1,10 +1,10 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/component/global.dart';
-import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
-import 'package:elsheikhzayedinfo/screens/bookmark_screen.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/messages_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
+import 'package:elsheikhzayedinfo/ui/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -74,6 +74,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: scaffoldBackGround,
         appBar: appBarWithTwoIcons(
             "Nile Scan & Labs",
             isPressed ? Icon(Icons.bookmark) : Icon(Icons.bookmark_border),
@@ -93,7 +94,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
             () {
               Share.share("https://elshikhzayed.info/index.php/user/login");
             }),
-        backgroundColor: Color(0xffEFEFEF),
+
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -1,3 +1,4 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/component/global.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/places_screen.dart';
@@ -6,9 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookMarkScreen extends StatefulWidget {
-  // final List<BookMarkItem> bookMarkList;
-  //
-  // BookMarkScreen({required this.bookMarkList});
 
   @override
   _BookMarkScreenState createState() => _BookMarkScreenState();
@@ -56,7 +54,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                     child: Text("Reload"),
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.red),
+                      MaterialStateProperty.all<Color>(buttonColor),
                     ),
                   ),
                 ),
@@ -67,6 +65,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
       ),
     );
   }
+
   Widget whenBookmarkItem(BookMarkItem bookMarkItem) {
     return InkWell(
       onTap: () {
@@ -92,7 +91,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                   image: AssetImage(bookMarkItem.imageName),
                   fit: BoxFit.fill,
                 ),
-                color: Colors.deepOrange,
+                color: deepOrange,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: MediaQuery
@@ -104,7 +103,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
               child: Container(
                 padding: EdgeInsets.all(5),
                 margin: EdgeInsets.only(left: 5),
-                color: Colors.white,
+                color: white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -112,7 +111,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                       bookMarkItem.placeName,
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.deepOrange,
+                        color: deepOrange,
                       ),
                     ),
                     Text(
@@ -135,7 +134,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor: scaffoldBackGround,
       appBar: buildScreensAppBar("Bookmark"),
       body: bookMarkList.isEmpty ? whenNoBookmark() :
       ListView.builder(

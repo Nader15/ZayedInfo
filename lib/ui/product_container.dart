@@ -7,7 +7,7 @@ Widget productContainer(RecentProductItem recentProductItem) {
     builder: (BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => TestScreen(recentProductList: [],)));
+            .push(MaterialPageRoute(builder: (context) => TestScreen()));
       },
       child: Container(
         height: MediaQuery.of(context).size.height / 3,

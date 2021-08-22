@@ -1,11 +1,12 @@
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:elsheikhzayedinfo/component/global.dart';
-import 'package:elsheikhzayedinfo/component/widgets.dart';
 import 'package:elsheikhzayedinfo/models/bookmark_item.dart';
 import 'package:elsheikhzayedinfo/screens/directions_screen.dart';
 import 'package:elsheikhzayedinfo/screens/google_map.dart';
 import 'package:elsheikhzayedinfo/screens/inbox_screen.dart';
 import 'package:elsheikhzayedinfo/screens/restaurant_screen.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
+import 'package:elsheikhzayedinfo/ui/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -67,6 +68,7 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackGround,
       appBar: appBarWithTwoIcons(
           "Lucca Steakhouse Egypt",
           _bool ? Icon(Icons.bookmark_border) : Icon(Icons.bookmark),
@@ -83,7 +85,6 @@ class _OrderScreenState extends State<OrderScreen> {
           () {
             Share.share("https://elshikhzayed.info/index.php/user/login");
           }),
-      backgroundColor: Color(0xffEFEFEF),
       body: SingleChildScrollView(
         child: Column(
           children: [

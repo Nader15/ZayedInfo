@@ -1,4 +1,4 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
@@ -17,7 +17,7 @@ class InfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor: scaffoldBackGround,
 
       appBar: buildScreensAppBar("El Sheikh Zayed info"),
       body: Column(

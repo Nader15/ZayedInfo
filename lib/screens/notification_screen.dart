@@ -1,4 +1,4 @@
-import 'package:elsheikhzayedinfo/component/widgets.dart';
+import 'package:elsheikhzayedinfo/component/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:elsheikhzayedinfo/ui/appBar.dart';
 
@@ -15,7 +15,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: scaffoldBackGround,
       appBar: buildScreensAppBar("Notification"),
       body: Container(
         decoration: BoxDecoration(
